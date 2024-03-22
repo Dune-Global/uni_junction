@@ -18,7 +18,7 @@ class TOutlinedButtonTheme {
       padding: const EdgeInsets.symmetric(
           vertical: TSizes.buttonHeight, horizontal: 20),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(TSizes.buttonRadius)),
+          borderRadius: BorderRadius.circular(TSizes.buttonRadiusFull)),
     ),
   );
 

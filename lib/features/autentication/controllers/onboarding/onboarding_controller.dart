@@ -1,6 +1,7 @@
 // import 'package:uni_junction/features/authentication/screens/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_junction/features/autentication/screens/login/login.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance => Get.find();
@@ -23,7 +24,7 @@ class OnBoardingController extends GetxController {
   // update current index & jump to next page
   void nextPage() {
    if (currentPageIndex.value == 2) {
-      // Get.to(LoginScreen());
+      Get.to(const LoginScreen());
     } else {
       currentPageIndex.value++;
       pageController.nextPage(

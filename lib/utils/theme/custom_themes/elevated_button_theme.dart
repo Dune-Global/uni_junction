@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
+import 'package:uni_junction/utils/constants/sizes.dart';
 
 class TElevatedButtonTheme {
   TElevatedButtonTheme._();
@@ -15,7 +16,7 @@ class TElevatedButtonTheme {
       padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: const TextStyle(
           fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     ),
   );
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
@@ -29,7 +30,7 @@ class TElevatedButtonTheme {
       padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: const TextStyle(
           fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.buttonRadiusFull)),
     ),
   );
 }
