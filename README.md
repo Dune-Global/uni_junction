@@ -1,16 +1,7 @@
-# uni_junction
+<h1 align="center">Uni Junction</h1>
 
-A new Flutter project.
+<div align="center">
+  
+<img src="https://github.com/Dune-Global/uni_junction/assets/91784445/45b441da-f7ce-4909-897d-616c76a25869" />
+</div>
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
