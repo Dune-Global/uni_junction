@@ -1,0 +1,65 @@
+name: uni_junction
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  iconsax: ^0.0.8
+
+  flutter_native_splash: ^2.3.9
+  smooth_page_indicator: ^1.1.0
+
+   # Utilities
+  http: ^1.1.0
+  intl: ^0.18.1
+  logger: ^2.0.1
+  url_launcher: ^6.1.12
+
+  # State Management
+  get: ^4.6.5
+  get_storage: ^2.1.1
+  lottie: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/on_boarding_images/
+    # - assets/images/animations/
+    # - assets/icons/
+    # - assets/logos/
+
+  fonts:
+    - family:
+      fonts:
+        - asset: assets/fonts/Poppins-Light.tff
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.tff
+          weight: 400
+        - asset: assets/fonts/Poppins-Italic.tff
+          style: italic
+        - asset: assets/fonts/Poppins-Medium.tff
+          weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.tff
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins-SemiBold.tff
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.tff
+          weight: 800
