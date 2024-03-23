@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_junction/features/autentication/screens/login/login.dart';
-import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/image_strings.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
