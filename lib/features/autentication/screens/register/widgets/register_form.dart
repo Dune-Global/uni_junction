@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
-import 'package:uni_junction/features/autentication/screens/register/register.dart';
+import 'package:uni_junction/features/autentication/screens/register/widgets/terms_conditions_checkbox.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
 
-class TLoginForm extends StatelessWidget {
-  const TLoginForm({
-    super.key,
-  });
+class TRegisterForm extends StatelessWidget {
+  const TRegisterForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +37,45 @@ class TLoginForm extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: Padding(
                     padding: EdgeInsets.only(left: 20),
+                    child: Icon(Iconsax.user),
+                  ),
+                ),
+                labelText: TTexts.firstName,
+              ),
+            ),
+            const SizedBox(height: TSizes.spaceBtwInputFields),
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(Iconsax.user),
+                  ),
+                ),
+                labelText: TTexts.lastName,
+              ),
+            ),
+            const SizedBox(height: TSizes.spaceBtwInputFields),
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(Iconsax.user_cirlce_add),
+                  ),
+                ),
+                labelText: TTexts.username,
+              ),
+            ),
+            const SizedBox(height: TSizes.spaceBtwInputFields),
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
                     child: Icon(Iconsax.password_check),
                   ),
                 ),
@@ -54,51 +91,17 @@ class TLoginForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
 
-            /// Remember me & forget passowrd
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                /// forget password
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                          text: '${TTexts.passwordReset1} ',
-                          style: Theme.of(context).textTheme.labelMedium),
-                      TextSpan(
-                        text: '${TTexts.passwordReset2} ',
-                        style: Theme.of(context).textTheme.labelMedium!.apply(
-                              color: TColors.primary,
-                              decoration: TextDecoration.underline,
-                              decorationColor: TColors.primary,
-                            ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.to(() => const ForgetPassword()),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+            const TTermsAndConditionCheckbox(),
             const SizedBox(height: TSizes.spaceBtwSections * 1.5),
 
             /// Sign in button
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () {}, child: const Text(TTexts.signIn))),
+                    onPressed: () {}, child: const Text(TTexts.createAccount))),
 
             const SizedBox(height: TSizes.spaceBtwItems),
-
-            /// create account button
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () => Get.to(() => const RegisterScreen()),
-                child: const Text(TTexts.createAccount),
-              ),
-            ),
           ],
         ),
       ),

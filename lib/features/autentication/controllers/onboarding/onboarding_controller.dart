@@ -1,4 +1,3 @@
-// import 'package:uni_junction/features/authentication/screens/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_junction/features/autentication/screens/login/login.dart';
