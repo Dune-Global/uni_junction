@@ -63,6 +63,8 @@ class TTexts {
 
   static const String passwordReset1 = "Can’t remember your password";
   static const String passwordReset2 = "reset it here";
+  static const String mailDidNotReceive = "Didn’t receive the email?";
+  static const String mailDidNotReceiveAction = "resend email";
 
   // -- Product
   static const String popularProducts = "Popular Products";

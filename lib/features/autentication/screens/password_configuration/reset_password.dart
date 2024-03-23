@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_junction/features/autentication/screens/login/login.dart';
+import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
+import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/image_strings.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
@@ -46,24 +50,36 @@ class ResetPassword extends StatelessWidget {
               style: Theme.of(context).textTheme.labelMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: TSizes.spaceBtwSections),
+            const SizedBox(height: TSizes.spaceBtwSections * 2),
 
             /// Buttons
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Get.off(() => const LoginScreen()),
                 child: const Text(TTexts.done),
               ),
             ),
-            const SizedBox(height: TSizes.spaceBtwItems),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(TTexts.resendEmail),
-              ),
-            ),
+            const SizedBox(height: TSizes.spaceBtwSections),
+            Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                          text: '${TTexts.mailDidNotReceive} ',
+                          style: Theme.of(context).textTheme.labelMedium),
+                      TextSpan(
+                        text: '${TTexts.mailDidNotReceiveAction} ',
+                        style: Theme.of(context).textTheme.labelMedium!.apply(
+                              color: TColors.primary,
+                              decoration: TextDecoration.underline,
+                              decorationColor: TColors.primary,
+                            ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {},
+                      ),
+                    ],
+                  ),
+                )
           ],
         ),
       ),
