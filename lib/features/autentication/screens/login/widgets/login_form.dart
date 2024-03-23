@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
@@ -72,7 +73,7 @@ class TLoginForm extends StatelessWidget {
                               decorationColor: TColors.primary,
                             ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.to(() => Container()),
+                          ..onTap = () => Get.to(() => const ForgetPassword()),
                       ),
                     ],
                   ),
