@@ -16,14 +16,11 @@ class RegisterScreen extends StatelessWidget {
           padding: TSpacingStyle.paddingWithAppBarHeight,
           child: Column(
             children: [
-              /// Logo, Title & Subtitle
               TRegisterHeader(),
 
               SizedBox(height: TSizes.spaceBtwItems),
 
               TRegisterForm(),
-              /// From
-              // TRegisterForm(),
             ],
           ),
         ),

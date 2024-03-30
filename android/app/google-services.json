@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "112345167578",
+    "project_id": "uni-junction",
+    "storage_bucket": "uni-junction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112345167578:android:2afe65e2b8d1ce61b257e3",
+        "android_client_info": {
+          "package_name": "com.example.uni_junction"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKgIJFDD0PfgChbJMxVdgP_MGVGXKTI30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

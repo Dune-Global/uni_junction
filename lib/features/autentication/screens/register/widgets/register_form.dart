@@ -91,7 +91,6 @@ class TRegisterForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
 
-
             const TTermsAndConditionCheckbox(),
             const SizedBox(height: TSizes.spaceBtwSections * 1.5),
 
@@ -100,6 +99,34 @@ class TRegisterForm extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {}, child: const Text(TTexts.createAccount))),
+
+            const SizedBox(height: TSizes.spaceBtwItems),
+
+            /// Login button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                          text: '${TTexts.loginTitle} ',
+                          style: Theme.of(context).textTheme.labelMedium),
+                      TextSpan(
+                        text: TTexts.signIn,
+                        style: Theme.of(context).textTheme.labelMedium!.apply(
+                              color: TColors.primary,
+                              decoration: TextDecoration.underline,
+                              decorationColor: TColors.primary,
+                            ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => Get.back(),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
 
             const SizedBox(height: TSizes.spaceBtwItems),
           ],

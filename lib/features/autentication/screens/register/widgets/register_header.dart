@@ -40,9 +40,6 @@ class TRegisterHeader extends StatelessWidget {
           style: Theme.of(context).textTheme.labelMedium,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
-          height: TSizes.sm,
-        ),
       ],
     );
   }
