@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:uni_junction/features/autentication/screens/onboarding/onboarding.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/theme/theme.dart';
 import 'package:uni_junction/utils/device/system_overlay.dart';

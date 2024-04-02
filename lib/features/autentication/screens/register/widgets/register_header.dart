@@ -34,12 +34,6 @@ class TRegisterHeader extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
-        const SizedBox(height: TSizes.spaceBtwItems),
-        Text(
-          TTexts.signupSubTitle,
-          style: Theme.of(context).textTheme.labelMedium,
-          textAlign: TextAlign.center,
-        ),
       ],
     );
   }
