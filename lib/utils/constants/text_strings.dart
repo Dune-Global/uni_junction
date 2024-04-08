@@ -79,4 +79,5 @@ class TTexts {
 
   // -- Profile
   static const String editProfile = "Edit Profile";
+  static const String save = "Save Profile";
 }

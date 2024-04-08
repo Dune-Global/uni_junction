@@ -11,7 +11,6 @@ class THomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return TAppBar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,19 +42,8 @@ class THomeAppBar extends StatelessWidget {
           ),
         ],
       ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: IconButton(
-            onPressed: null,
-            icon: Icon(
-              isDark ? Icons.dark_mode : Icons.light_mode,
-              size: 25,
-              color: TColors.light,
-            ),
-          ),
-        ),
-        const CircleAvatar(
+      actions: const [
+        CircleAvatar(
           radius: 25,
           backgroundImage:
               NetworkImage('https://avatar.iran.liara.run/public/21'),
