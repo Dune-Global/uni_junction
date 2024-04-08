@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:uni_junction/features/event/screens/explore/explore.dart';
 import 'package:uni_junction/features/event/screens/home/home.dart';
+import 'package:uni_junction/features/event/screens/profile/profile.dart';
+import 'package:uni_junction/features/event/screens/saved/saved.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -19,8 +22,12 @@ class NavigationMenu extends StatelessWidget {
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
           destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home', ),
-            NavigationDestination(icon: Icon(Iconsax.calendar), label: 'Explore'),
+            NavigationDestination(
+              icon: Icon(Iconsax.home),
+              label: 'Home',
+            ),
+            NavigationDestination(
+                icon: Icon(Iconsax.calendar), label: 'Explore'),
             NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile')
           ],
@@ -38,9 +45,9 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
-     HomeScreen(),
-    Container(color: Colors.purple),
-    Container(color: Colors.orange),
-    Container(color: Colors.blue),
+    const HomeScreen(),
+    const ExploreScreen(),
+    const SavedScreen(),
+    const ProfileScreen(),
   ];
 }
