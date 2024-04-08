@@ -39,7 +39,7 @@ class LoginController extends GetxController {
 
       TFullScreenLoader.stopLoading();
 
-      Get.offAll(() => const HomeScreen()); 
+      Get.offAll(() => const NavigationMenu()); 
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar("Oh Snap", e.toString());
