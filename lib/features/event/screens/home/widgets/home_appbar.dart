@@ -7,7 +7,7 @@ import 'package:uni_junction/utils/constants/text_strings.dart';
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({
     super.key,
-  }); 
+  });
 
   @override
   Widget build(BuildContext context) {

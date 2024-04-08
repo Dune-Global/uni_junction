@@ -1,8 +1,7 @@
 name: uni_junction
 description: "A new Flutter project."
 
-publish_to: 'none' 
-
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -10,35 +9,28 @@ environment:
   sdk: '>=3.3.2 <4.0.0'
 
 dependencies:
+  cloud_firestore: ^4.16.0
+  cupertino_icons: ^1.0.6
+  firebase_auth: ^4.19.0
+  firebase_core: ^2.27.2
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.6
-  iconsax: ^0.0.8
-
   flutter_native_splash: ^2.3.9
-  smooth_page_indicator: ^1.1.0
-
-   # Utilities
-  http: ^1.1.0
-  intl: ^0.18.1
-  logger: ^2.0.1
-  url_launcher: ^6.1.12
-
-  # State Management
   get: ^4.6.5
   get_storage: ^2.1.1
+  http: ^1.1.0
+  iconsax: ^0.0.8
+  intl: ^0.18.1
+  logger: ^2.0.1
   lottie: ^3.1.0
-  firebase_core: ^2.27.2
-  firebase_auth: ^4.19.0
-  cloud_firestore: ^4.16.0
+  smooth_page_indicator: ^1.1.0
+  url_launcher: ^6.1.12
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
   flutter_lints: ^3.0.0
-
+  flutter_test:
+    sdk: flutter
 
 flutter:
   uses-material-design: true

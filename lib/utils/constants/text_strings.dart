@@ -74,4 +74,10 @@ class TTexts {
   // -- Home
   static const String homeAppbarTitle = "Current Location";
   static const String homeAppbarSubTitle = "Ja-Ela, Sri Lanka";
+
+
+
+  // -- Profile
+  static const String editProfile = "Edit Profile";
+  static const String save = "Save Profile";
 }
