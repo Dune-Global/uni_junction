@@ -1,13 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_all.dart';
+import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
+import 'package:uni_junction/features/event/screens/profile/widgets/editprofile.dart';
+import 'package:uni_junction/utils/constants/sizes.dart';
+import 'package:uni_junction/utils/constants/text_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Profile Screen'),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 80),
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: const Image(
+                        image: NetworkImage(
+                            'https://avatar.iran.liara.run/public/21')),
+                  ),
+                ),
+                const SizedBox(height: TSizes.md),
+                Text(
+                  TTexts.appName,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                Text(
+                  TTexts.appName,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: 150,
+                  child: ElevatedButton(
+                    onPressed: () => Get.to(()=> const EditProfile() ),
+                    child: const Text(TTexts.editProfile),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Column(
+                  children: [
+                    TThisMonthEventCards(),
+                    SizedBox(height: 25,),
+                    TThisMonthEventCards(),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
