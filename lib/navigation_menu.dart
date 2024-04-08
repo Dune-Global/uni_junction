@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:uni_junction/features/event/screens/create_event/create_event.dart';
 import 'package:uni_junction/features/event/screens/explore/explore.dart';
 import 'package:uni_junction/features/event/screens/home/home.dart';
 import 'package:uni_junction/features/event/screens/profile/profile.dart';
@@ -28,6 +29,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
                 icon: Icon(Iconsax.calendar), label: 'Explore'),
+            NavigationDestination(icon: Icon(Iconsax.add), label: 'Create'),
             NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile')
           ],
@@ -47,6 +49,7 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const ExploreScreen(),
+    const CreateEventScreen(),
     const SavedScreen(),
     const ProfileScreen(),
   ];
