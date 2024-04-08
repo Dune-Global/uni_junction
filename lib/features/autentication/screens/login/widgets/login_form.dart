@@ -2,12 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:uni_junction/features/autentication/controllers/login/login_controller.dart';
 import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
 import 'package:uni_junction/features/autentication/screens/register/register.dart';
 import 'package:uni_junction/navigation_menu.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
+import 'package:uni_junction/utils/validator/validation.dart';
 
 class TLoginForm extends StatelessWidget {
   const TLoginForm({
@@ -16,12 +18,18 @@ class TLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginController = Get.put(LoginController());
+
     return Form(
+       key: loginController.uniqueLoginFormKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
             TextFormField(
+              controller: loginController.email,
+              validator: (value) =>
+                  TValidator.validateEmail(value),
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -35,6 +43,9 @@ class TLoginForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
             TextFormField(
+              controller: loginController.password,
+              validator: (value) =>
+                  TValidator.validationEmptyText("Password", value),
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -88,7 +99,8 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(() => const NavigationMenu()), child: const Text(TTexts.signIn))),
+                    onPressed: () => loginController.emailAndPasswordLogin(),
+                    child: const Text(TTexts.signIn))),
 
             const SizedBox(height: TSizes.spaceBtwItems),
 

@@ -55,7 +55,7 @@ class RegisterController extends GetxController {
   
       TLoaders.successSnackBar("Success", "User registered successfully");
   
-      Get.to(() => const LoginScreen());
+       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       TLoaders.errorSnackBar(
           "Error", e.toString().replaceAll("Exception:", ""));
