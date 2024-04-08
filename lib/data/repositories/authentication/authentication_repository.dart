@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:uni_junction/features/autentication/screens/login/login.dart';
 import 'package:uni_junction/features/autentication/screens/onboarding/onboarding.dart';
+import 'package:uni_junction/navigation_menu.dart';
 import 'package:uni_junction/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:uni_junction/utils/exceptions/firebase_exceptions.dart';
 import 'package:uni_junction/utils/exceptions/format_exceptions.dart';
@@ -32,6 +33,25 @@ class AuthenticationRepository extends GetxController {
     deviceStorage.read('isFirstTime') != true
         ? Get.offAll(() => const LoginScreen())
         : Get.offAll(() => const OnBoardingScreen());
+  }
+
+  // Login with Email and Password
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
   }
 
   // Email Authentication
