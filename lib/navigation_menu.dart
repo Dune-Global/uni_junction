@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:uni_junction/features/event/screens/create_event/create_event.dart';
 import 'package:uni_junction/features/event/screens/explore/explore.dart';
 import 'package:uni_junction/features/event/screens/home/home.dart';
 import 'package:uni_junction/features/event/screens/profile/profile.dart';
 import 'package:uni_junction/features/event/screens/saved/saved.dart';
+import 'package:uni_junction/utils/constants/colors.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -18,18 +20,42 @@ class NavigationMenu extends StatelessWidget {
         () => NavigationBar(
           height: 80,
           elevation: 0,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          indicatorColor: TColors.primary,
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Iconsax.home),
+              icon: controller.selectedIndex.value == 0
+                  ? Icon(Iconsax.home5, color: TColors.accent, fill: 1.0,)
+                  : Icon(Iconsax.home),
               label: 'Home',
             ),
             NavigationDestination(
-                icon: Icon(Iconsax.calendar), label: 'Explore'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile')
+              icon: controller.selectedIndex.value == 1
+                  ? Icon(Iconsax.calendar_tick5, color: TColors.accent)
+                  : Icon(Iconsax.calendar_tick),
+              label: 'Explore',
+            ),
+            NavigationDestination(
+              icon: controller.selectedIndex.value == 2
+                  ? Icon(Iconsax.add5, color: TColors.accent)
+                  : Icon(Iconsax.add),
+              label: 'Create',
+            ),
+            NavigationDestination(
+              icon: controller.selectedIndex.value == 3
+                  ? Icon(Iconsax.heart5, color: TColors.accent)
+                  : Icon(Iconsax.heart),
+              label: 'Saved',
+            ),
+            NavigationDestination(
+              icon: controller.selectedIndex.value == 4
+                  ? Icon(Iconsax.user_tag1, color: TColors.accent)
+                  : Icon(Iconsax.user_tag),
+              label: 'Profile',
+            ),
           ],
         ),
       ),
@@ -47,6 +73,7 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const ExploreScreen(),
+    const CreateEventScreen(),
     const SavedScreen(),
     const ProfileScreen(),
   ];
