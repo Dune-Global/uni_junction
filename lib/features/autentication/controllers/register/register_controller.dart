@@ -26,18 +26,18 @@ class RegisterController extends GetxController {
     try {
       TFullScreenLoader.openLoadingDialog(
           "We are processing your information", TImages.onBoardingImage2);
-
+  
       // Form validation
-      if (registerFormKey.currentState!.validate()) {
+      if (!registerFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
-
+  
       // Register user in the firebase authentication & save user data in the firebase
       final userCredentials = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
-
+  
       // Save authenticated user data in the firebase firestore
       final newUser = UserModel(
         id: userCredentials.user!.uid,
@@ -47,14 +47,14 @@ class RegisterController extends GetxController {
         username: userName.text.trim(),
         profilePicture: '',
       );
-
+  
       final userRepository = Get.put(UserRepository());
       await userRepository.savedUserRecord(newUser);
-
+  
       TFullScreenLoader.stopLoading();
-
+  
       TLoaders.successSnackBar("Success", "User registered successfully");
-
+  
       Get.to(() => const LoginScreen());
     } catch (e) {
       TLoaders.errorSnackBar(
