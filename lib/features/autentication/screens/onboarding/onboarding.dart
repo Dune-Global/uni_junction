@@ -8,6 +8,7 @@ import 'package:uni_junction/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
