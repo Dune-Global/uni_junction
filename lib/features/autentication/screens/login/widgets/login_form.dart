@@ -21,15 +21,14 @@ class TLoginForm extends StatelessWidget {
     final loginController = Get.put(LoginController());
 
     return Form(
-       key: loginController.uniqueLoginFormKey,
+      key: loginController.uniqueLoginFormKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
             TextFormField(
               controller: loginController.email,
-              validator: (value) =>
-                  TValidator.validateEmail(value),
+              validator: (value) => TValidator.validateEmail(value),
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(8.0),
