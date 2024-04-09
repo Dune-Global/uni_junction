@@ -1,13 +1,9 @@
 // ignore_for_file: dead_code_on_catch_subtype
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:uni_junction/data/repositories/authentication/authentication_repository.dart';
-import 'package:uni_junction/features/autentication/screens/login/login.dart';
-import 'package:uni_junction/features/autentication/screens/onboarding/onboarding.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
 import 'package:uni_junction/utils/exceptions/firebase_exceptions.dart';
 import 'package:uni_junction/utils/exceptions/format_exceptions.dart';
