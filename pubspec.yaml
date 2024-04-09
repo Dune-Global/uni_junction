@@ -1,12 +1,12 @@
 name: uni_junction
 description: "A new Flutter project."
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.2 <4.0.0'
+  sdk: ">=3.3.2 <4.0.0"
 
 dependencies:
   cloud_firestore: ^4.16.0
@@ -28,8 +28,8 @@ dependencies:
   shimmer: ^3.0.0
 
 dev_dependencies:
-
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
@@ -60,3 +60,10 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 800
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: "AppIcon"
+  image_path: "assets/logos/uni-junction-app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true

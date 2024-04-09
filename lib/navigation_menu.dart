@@ -76,7 +76,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    ExploreScreen(),
+    const ExploreScreen(),
     const CreateEventScreen(),
     const SavedScreen(),
     const ProfileScreen(),
