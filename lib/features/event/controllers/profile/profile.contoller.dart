@@ -9,11 +9,12 @@ class ProfileController extends GetxController {
   final _authRepo = Get.put(AuthenticationRepository());
   final _userRepo = Get.put(UserRepository());
   getUserDate() {
-    final email = _authRepo.firebaseUser.value?.email;
-    if (email != null) {
-      return _userRepo.getUserDetails(email);
-    }else{
-      Get.snackbar("Error", "User not found");
-    }
+    // final email = _authRepo.firebaseUser.value?.email;
+    // if (email != null) {
+    //   return _userRepo.getUserDetails(email);
+    // }else{
+    //   Get.snackbar("Error", "User not found");
+    //   return Future.error('User not found');
+    // }
   }
 }

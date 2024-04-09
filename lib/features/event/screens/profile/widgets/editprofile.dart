@@ -13,7 +13,7 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final  controller = Get.put(ProfileController());
+    final controller = Get.put(ProfileController());
     return Scaffold(
       body: Center(
         child: Padding(
@@ -21,7 +21,7 @@ class EditProfile extends StatelessWidget {
           child: FutureBuilder(
             future: controller.getUserDate(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
+              if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasData) {
                   UserModel userData = snapshot.data as UserModel;
                   return Column(children: [
@@ -127,7 +127,6 @@ class EditProfile extends StatelessWidget {
                             ),
                             const SizedBox(height: TSizes.spaceBtwInputFields),
                             TextFormField(
-                             
                               decoration: const InputDecoration(
                                 prefixIcon: Padding(
                                   padding: EdgeInsets.all(8.0),
@@ -189,7 +188,7 @@ class EditProfile extends StatelessWidget {
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
-            }, 
+            },
           ),
         ),
       ),
