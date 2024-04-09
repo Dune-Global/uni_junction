@@ -1,52 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:uni_junction/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:uni_junction/common/widgets/appbar/appbar.dart';
 import 'package:uni_junction/features/event/screens/explore/widgets/catergory_card.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 
-class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({super.key});
+class ExploreScreen extends StatelessWidget {
 
-  @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
+  final List<Map<String, String>> categories = const [
+    {
+      'text': 'Science & Technology',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Music & Concerts',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Food & Culinary',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Sports & Recreation',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Arts & Culture',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Arts & Culture',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    // Add more categories here
+  ];
 
-class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const TAppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Explore"),
+            Text("Find events near you",
+                style: TextStyle(
+                  color: TColors.grey,
+                  fontSize: 12,
+                ))
+          ],
+        ),
+      ),
       body: RefreshIndicator(
         onRefresh: () {
           PaintingBinding.instance.imageCache.clear();
 
           return Future.delayed(
             const Duration(seconds: 1),
-            () => setState(() {}),
           );
         },
-        child: const SingleChildScrollView(
-            child: Padding(
-          padding: EdgeInsets.only(top: 80),
-          child: Center(
-            child: Column(
-              children: [
-                TSearchContainer(
-                  text: "Search for events",
-                  color: TColors.black,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const TSearchContainer(
+                text: "Search for events",
+                color: TColors.black,
+              ),
+              const SizedBox(height: TSizes.defaultSpace),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+                child: Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      child: GridView.builder(
+                        itemCount: categories.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
+                        ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return CategoryCard(
+                            text: categories[index]['text']!,
+                            imageUrl: categories[index]['imageUrl']!,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: TSizes.spaceBtwSections),
-                SizedBox(height: TSizes.spaceBtwSections),
-                CategoryCard(
-                  // Use the CategoryCard widget here
-                  text: 'Your Text',
-                  imageUrl:
-                      'https://unsplash.it/115/415', // Unsplash.it is now Picsum.photos
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        )),
+        ),
       ),
     );
   }
