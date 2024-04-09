@@ -28,7 +28,11 @@ class NavigationMenu extends StatelessWidget {
           destinations: [
             NavigationDestination(
               icon: controller.selectedIndex.value == 0
-                  ? Icon(Iconsax.home5, color: TColors.accent, fill: 1.0,)
+                  ? Icon(
+                      Iconsax.home5,
+                      color: TColors.accent,
+                      fill: 1.0,
+                    )
                   : Icon(Iconsax.home),
               label: 'Home',
             ),
@@ -72,7 +76,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    const ExploreScreen(),
+    ExploreScreen(),
     const CreateEventScreen(),
     const SavedScreen(),
     const ProfileScreen(),
