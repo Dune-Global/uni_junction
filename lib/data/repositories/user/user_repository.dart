@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:uni_junction/data/repositories/authentication/authentication_repository.dart';
 import 'package:uni_junction/features/autentication/screens/login/login.dart';
 import 'package:uni_junction/features/autentication/screens/onboarding/onboarding.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
@@ -20,7 +21,30 @@ class UserRepository extends GetxController {
   // Save user
   Future<void> savedUserRecord(UserModel user) async {
     try {
-      return await _db.collection("Users").doc(user.id).set(user.toJson()); 
+      return await _db.collection("Users").doc(user.id).set(user.toJson());
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
+  }
+
+  // Fetch user details
+  Future<UserModel> fetchUserDetails() async {
+    try {
+      final documentSnapshot = await _db
+          .collection("Users")
+          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .get();
+      if (documentSnapshot.exists) {
+        return UserModel.fromSnapshot(documentSnapshot);
+      } else {
+        return UserModel.empty();
+      }
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
