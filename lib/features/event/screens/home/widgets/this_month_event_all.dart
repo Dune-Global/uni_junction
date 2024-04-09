@@ -55,6 +55,26 @@ class TThisMonthEventCards extends StatelessWidget {
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/225/411",
         ),
+        SizedBox(
+          height: TSizes.spaceBtwSections,
+        ),
+        EventThisMonth(
+          date: "24",
+          month: "Jul",
+          eventName: "GDG Devfest 2024",
+          location: "Colombo, Sri Lanka",
+          imageUrl: "https://unsplash.it/224/411",
+        ),
+        SizedBox(
+          height: TSizes.spaceBtwSections,
+        ),
+        EventThisMonth(
+          date: "09",
+          month: "Aug",
+          eventName: "KCD Sri Lanka 2024",
+          location: "Colombo, Sri Lanka",
+          imageUrl: "https://unsplash.it/687/411",
+        ),
       ],
     );
   }

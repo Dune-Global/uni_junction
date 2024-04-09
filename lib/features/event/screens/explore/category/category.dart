@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:uni_junction/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:uni_junction/common/widgets/heading_navigators/heading_navigator.dart';
+import 'package:uni_junction/features/event/screens/home/widgets/home_appbar.dart';
+import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_all.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
@@ -45,15 +48,18 @@ class Category extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            THeadingNavigator(
-              title: "Events This Month",
-              buttonText: "View All",
-              buttonTextColor: TColors.primary,
-              titleColor: TColors.primary,
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: TSizes.spaceBtwItems,
+            TPrimaryHeaderContainer(
+              height: 170,
+              child: Padding(
+                padding: const EdgeInsets.only(top: TSizes.defaultSpace),
+                child: Column(
+                  children: [
+                    const SizedBox(height: TSizes.defaultSpace),
+                    // Search Container
+                    const TSearchContainer(text: "Search for events"),
+                  ],
+                ),
+              ),
             ),
             // Events This Month
             const TThisMonthEventCards()
