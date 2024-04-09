@@ -41,26 +41,32 @@ class TLoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
-            TextFormField(
-              controller: loginController.password,
-              validator: (value) =>
-                  TValidator.validationEmptyText("Password", value),
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Icon(Iconsax.password_check),
+            Obx(
+              () => TextFormField(
+                controller: loginController.password,
+                obscureText: loginController.hidePassword.value,
+                validator: (value) =>
+                    TValidator.validationEmptyText("Password", value),
+                decoration: InputDecoration(
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Icon(Iconsax.password_check),
+                    ),
                   ),
-                ),
-                suffixIcon: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Icon(Iconsax.eye_slash),
+                  suffixIcon: IconButton(
+                    padding: const EdgeInsets.all(8.0),
+                    onPressed: () => loginController.hidePassword(),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Icon(loginController.hidePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye),
+                    ),
                   ),
+                  labelText: TTexts.password,
                 ),
-                labelText: TTexts.password,
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),

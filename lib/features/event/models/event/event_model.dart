@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EventModel {
   final String id;
+  final String userId;
   String title;
   String description;
   String? eventUrl;
@@ -11,14 +12,20 @@ class EventModel {
   DateTime? endTime;
   String imageUrl;
   String location;
-  bool? isPublic;
+  bool? isPrivate;
   bool? isOrg;
   String? orgName;
   bool? isTicketed;
   String? ticketPrice;
+  String? headCount;
+  String? eventCategory;
+  bool? isOnline;
+  List<String>? attendees;
+  String? university;
 
   EventModel(
       {required this.id,
+      required this.userId,
       required this.title,
       required this.description,
       this.eventUrl,
@@ -28,20 +35,28 @@ class EventModel {
       this.endTime,
       required this.imageUrl,
       required this.location,
-      this.isPublic,
+      this.isPrivate,
       this.isOrg,
       this.orgName,
       this.isTicketed,
-      this.ticketPrice});
+      this.ticketPrice,
+      this.headCount,
+      this.eventCategory,
+      this.attendees,
+      this.isOnline,
+      this.university
+      });
 
   // Static function to create empty event model
   static EventModel empty() => EventModel(
         id: "",
+        userId: "",
         title: "",
         description: "",
         startDate: DateTime.now(),
         imageUrl: "",
         location: "",
+        attendees: List.empty(),
       );
 
   Map<String, dynamic> toJson() {
@@ -56,11 +71,16 @@ class EventModel {
       "endTime": endTime,
       "imageUrl": imageUrl,
       "location": location,
-      "isPublic": isPublic,
+      "isPublic": isPrivate,
       "isOrg": isOrg,
       "orgName": orgName,
       "isTicketed": isTicketed,
       "ticketPrice": ticketPrice,
+      "headCount": headCount,
+      "eventCategory": eventCategory,
+      "isOnline": isOnline,
+      "attendees": attendees,
+      "university": university 
     };
   }
 
@@ -69,6 +89,7 @@ class EventModel {
     final data = document.data()!;
     return EventModel(
       id: document.id,
+      userId: data["userId"],
       title: data["title"],
       description: data["description"],
       eventUrl: data["eventUrl"],
@@ -78,11 +99,16 @@ class EventModel {
       endTime: data["endTime"]?.toDate(),
       imageUrl: data["imageUrl"],
       location: data["location"],
-      isPublic: data["isPublic"],
+      isPrivate: data["isPrivate"],
       isOrg: data["isOrg"],
       orgName: data["orgName"],
       isTicketed: data["isTicketed"],
       ticketPrice: data["ticketPrice"],
+      attendees: List<String>.from(data["attendees"]),
+      eventCategory: data["eventCategory"],
+      headCount: data["headCount"],
+      isOnline: data["isOnline"],
+      university: data["university"]
     );
   }
 }
