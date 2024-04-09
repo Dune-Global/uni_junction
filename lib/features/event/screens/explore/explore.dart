@@ -4,37 +4,9 @@ import 'package:uni_junction/features/event/screens/explore/widgets/catergory_ca
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
+import 'package:uni_junction/data/services/explore/categories_data.dart';
 
 class ExploreScreen extends StatelessWidget {
-
-  final List<Map<String, String>> categories = const [
-    {
-      'text': 'Science & Technology',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Music & Concerts',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Food & Culinary',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Sports & Recreation',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Arts & Culture',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Arts & Culture',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    // Add more categories here
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +15,13 @@ class ExploreScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Explore"),
-            Text("Find events near you",
-                style: TextStyle(
-                  color: TColors.grey,
-                  fontSize: 12,
-                ))
+            Text(
+              "Find events near you",
+              style: TextStyle(
+                color: TColors.grey,
+                fontSize: 12,
+              ),
+            )
           ],
         ),
       ),
