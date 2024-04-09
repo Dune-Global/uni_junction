@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uni_junction/common/widgets/appbar/appbar.dart';
 import 'package:uni_junction/features/event/screens/explore/widgets/categories_grid.dart';
 import 'package:uni_junction/features/event/screens/explore/widgets/explore_app_bar.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
@@ -23,6 +22,7 @@ class ExploreScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: TSizes.defaultSpace),
               const TSearchContainer(
                 text: "Search for events",
                 color: TColors.black,

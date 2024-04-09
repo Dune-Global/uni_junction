@@ -20,10 +20,10 @@ class ExploreAppBar extends StatelessWidget implements PreferredSizeWidget {
           const Text(
             "Find events near you",
             style: TextStyle(
-              color: TColors.grey,
-              fontSize: 12,
+              color: TColors.darkGrey,
+              fontSize: 15,
             ),
-          )
+          ),
         ],
       ),
     );
