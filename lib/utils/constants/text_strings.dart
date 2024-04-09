@@ -81,4 +81,18 @@ class TTexts {
   // -- Profile
   static const String editProfile = "Edit Profile";
   static const String save = "Save Profile";
+
+  // -- Create Event
+  static const String createEvent = "Add Post";
+  static const String eventTitle = "Event Title";
+  static const String eventDescription = "Event Description";
+  static const String eventLocation = "Event Location";
+  static const String eventstartDate = "Start Date";
+  static const String eventEndDate = "End Date";
+  static const String eventTime = "Start Time";
+  static const String eventEndTime = "End Time";
+  static const String eventCategory = "Event Category";
+  static const String eventImage = "Event Image";
+
+  
 }
