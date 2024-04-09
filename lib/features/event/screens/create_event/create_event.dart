@@ -4,8 +4,8 @@ import 'package:uni_junction/features/event/controllers/event/event_controller.d
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
 
-class CreateEventScren extends StatelessWidget {
-  const CreateEventScren({super.key});
+class CreateEventScreen extends StatelessWidget {
+  const CreateEventScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
