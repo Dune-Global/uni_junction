@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_all.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
 import 'package:uni_junction/features/event/screens/profile/widgets/editprofile.dart';
+import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
 
@@ -13,6 +15,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -31,21 +35,31 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: TSizes.md),
-                Text(
-                  TTexts.appName,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Text(
-                  TTexts.appName,
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
+                Obx(() {
+                  if (controller.profileLodaing.value) {
+                    return const CircularProgressIndicator();
+                  }
+                  return Text(
+                    controller.user.value.fullName,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                }),
+                Obx(() {
+                  if (controller.profileLodaing.value) {
+                    return const CircularProgressIndicator();
+                  }
+                  return Text(
+                    controller.user.value.university,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  );
+                }),
                 const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
                   width: 150,
                   child: ElevatedButton(
-                    onPressed: () => Get.to(()=> const EditProfile() ),
+                    onPressed: () => Get.to(() => const EditProfile()),
                     child: const Text(TTexts.editProfile),
                   ),
                 ),
@@ -55,7 +69,9 @@ class ProfileScreen extends StatelessWidget {
                 const Column(
                   children: [
                     TThisMonthEventCards(),
-                    SizedBox(height: 25,),
+                    SizedBox(
+                      height: 25,
+                    ),
                     TThisMonthEventCards(),
                   ],
                 ),
