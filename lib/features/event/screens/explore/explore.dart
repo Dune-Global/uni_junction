@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:uni_junction/common/widgets/appbar/appbar.dart';
-import 'package:uni_junction/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:uni_junction/features/event/screens/explore/widgets/catergory_card.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 
-class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({super.key});
+class ExploreScreen extends StatelessWidget {
 
-  @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
-
-class _ExploreScreenState extends State<ExploreScreen> {
-  final List<Map<String, String>> categories = [
+  final List<Map<String, String>> categories = const [
     {
-      'text': 'Category 1',
+      'text': 'Science & Technology',
       'imageUrl': 'https://picsum.photos/200/300',
     },
     {
-      'text': 'Category 2',
+      'text': 'Music & Concerts',
       'imageUrl': 'https://picsum.photos/200/300',
     },
     {
-      'text': 'Category 3',
+      'text': 'Food & Culinary',
       'imageUrl': 'https://picsum.photos/200/300',
     },
     {
-      'text': 'Category 4',
+      'text': 'Sports & Recreation',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Arts & Culture',
+      'imageUrl': 'https://picsum.photos/200/300',
+    },
+    {
+      'text': 'Arts & Culture',
       'imageUrl': 'https://picsum.photos/200/300',
     },
     // Add more categories here
@@ -37,7 +38,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TAppBar(
+      appBar: const TAppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,33 +57,30 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
           return Future.delayed(
             const Duration(seconds: 1),
-            () => setState(() {}),
           );
         },
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TSearchContainer(
+              const TSearchContainer(
                 text: "Search for events",
                 color: TColors.black,
               ),
-              SizedBox(height: TSizes.defaultSpace),
+              const SizedBox(height: TSizes.defaultSpace),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
                 child: Column(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height *
-                          0.7, // adjust the value as needed
+                      height: MediaQuery.of(context).size.height * 0.7,
                       child: GridView.builder(
                         itemCount: categories.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // This creates 2 columns
-                          crossAxisSpacing:
-                              10.0, // This is the space between the columns
-                          mainAxisSpacing:
-                              10.0, // This is the space between the rows
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           return CategoryCard(
