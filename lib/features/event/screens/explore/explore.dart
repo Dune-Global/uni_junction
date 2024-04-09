@@ -6,6 +6,7 @@ import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 
 class ExploreScreen extends StatelessWidget {
+  const ExploreScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
