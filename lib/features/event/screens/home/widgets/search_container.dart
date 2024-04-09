@@ -6,16 +6,18 @@ import 'package:uni_junction/utils/device/device_utility.dart';
 
 class TSearchContainer extends StatelessWidget {
   const TSearchContainer({
-    super.key,
+    Key? key,
     required this.text,
     this.icon,
     this.showBackground = true,
     this.showBorder = true,
-  });
+    this.color = TColors.grey,
+  }) : super(key: key);
 
   final String text;
   final IconData? icon;
   final bool showBackground, showBorder;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +29,18 @@ class TSearchContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(TSizes.buttonRadiusFull),
-          border: Border.all(color: TColors.grey),
+          border: Border.all(color: color),
         ),
         child: Row(
           children: [
-            const Icon(
+            Icon(
               Iconsax.search_normal,
-              color: TColors.grey,
+              color: color,
             ),
             const SizedBox(width: TSizes.spaceBtwItems),
             Text(
               text,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .apply(color: TColors.grey),
+              style: Theme.of(context).textTheme.bodySmall!.apply(color: color),
             ),
           ],
         ),
