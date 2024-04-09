@@ -22,7 +22,8 @@ class EventRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw "Something went wrong";
+      print(e.toString());
+      throw e.toString();
     }
   }
 }
