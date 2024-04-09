@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_junction/common/widgets/appbar/appbar.dart';
 import 'package:uni_junction/features/event/screens/explore/widgets/categories_grid.dart';
+import 'package:uni_junction/features/event/screens/explore/widgets/explore_app_bar.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
@@ -10,21 +11,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Explore"),
-            Text(
-              "Find events near you",
-              style: TextStyle(
-                color: TColors.grey,
-                fontSize: 12,
-              ),
-            )
-          ],
-        ),
-      ),
+      appBar: const ExploreAppBar(),
       body: RefreshIndicator(
         onRefresh: () {
           PaintingBinding.instance.imageCache.clear();
