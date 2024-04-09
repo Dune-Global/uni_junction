@@ -7,15 +7,16 @@ class UserModel {
   final String username;
   final String email;
   String profilePicture;
+  String university;
 
-  UserModel({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.username,
-    required this.email,
-    required this.profilePicture,
-  });
+  UserModel(
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.username,
+      required this.email,
+      required this.profilePicture,
+      required this.university});
 
 // Helper funciton to get the full name
   String get fullName => "$firstName $lastName";
@@ -36,13 +37,13 @@ class UserModel {
 
   // Static function to create empty user model
   static UserModel empty() => UserModel(
-        id: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        profilePicture: "",
-      );
+      id: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
+      profilePicture: "",
+      university: "");
 
   Map<String, dynamic> toJson() {
     return {
@@ -52,19 +53,24 @@ class UserModel {
       "username": username,
       "email": email,
       "profilePicture": profilePicture,
+      "university": university,
     };
   }
 
   factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data()!;
-    return UserModel(
-      id: document.id,
-      firstName: data["firstName"],
-      lastName: data["lastName"],
-      username: data["username"],
-      email: data["email"],
-      profilePicture: data["profilePicture"],
-    );
+    if (document.data() != null) {
+      final data = document.data()!;
+      return UserModel(
+          id: document.id,
+          firstName: data["firstName"] ?? "",
+          lastName: data["lastName"] ?? "",
+          username: data["username"] ?? "",
+          email: data["email"] ?? "",
+          profilePicture: data["profilePicture"] ?? "",
+          university: data["university"] ?? "");
+    } else {
+      return UserModel.empty();
+    }
   }
 }

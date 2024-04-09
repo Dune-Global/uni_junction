@@ -26,6 +26,7 @@ class TTexts {
   static const String password = "Enter your password";
   static const String newPassword = "New Password";
   static const String username = "Username";
+  static const String university = "University";
   static const String phoneNo = "Phone Number";
   static const String rememberMe = "Remember Me";
   static const String forgetPassword = "Forget Password?";
