@@ -86,6 +86,39 @@ class TRegisterForm extends StatelessWidget {
               ),
             ),
             SizedBox(height: TSizes.spaceBtwInputFields),
+            DropdownButtonFormField<String>(
+              value: controller.selectedUniversity.value,
+              validator: (value) => TValidator.validationEmptyText("University", value),
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(Iconsax.activity),
+                  ),
+                ),
+                labelText: TTexts.university,
+              ),
+              items: controller.universityList.map((String university) {
+                return DropdownMenuItem<String>(
+                  alignment: Alignment.topCenter,
+                  value: university,
+                  child: Container(
+                    width: 200,
+                    child: Text(
+                      university,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? newValue) { 
+                if (newValue != null) { 
+                  controller.selectedUniversity.value = newValue;
+                }
+              },
+            ),
+            SizedBox(height: TSizes.spaceBtwInputFields),
             Obx(
               () => TextFormField(
                 controller: controller.password,
