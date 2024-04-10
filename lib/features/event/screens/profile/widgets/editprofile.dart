@@ -18,6 +18,9 @@ class EditProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(TTexts.editProfile),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 80.0),
