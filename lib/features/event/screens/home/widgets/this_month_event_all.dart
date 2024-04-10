@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_junction/features/event/screens/event_details/event_details.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
 import 'package:uni_junction/test/test_page.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
@@ -19,8 +20,7 @@ class TThisMonthEventCards extends StatelessWidget {
           eventName: "Google I/O 24",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/645/411",
-          onTap: () => Get.to(() => TestScreen(
-              title: "Google I/O 24", description: "Colombo, Sri Lanka")),
+          onTap: () => Get.to(() => EventDetailsScreen()),
         ),
         SizedBox(
           height: TSizes.spaceBtwSections,
