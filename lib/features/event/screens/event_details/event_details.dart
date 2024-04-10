@@ -17,19 +17,35 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(
-        title: Center(child: Text('Event Details')),
+      appBar: TAppBar(
+        title: Center(
+          child: Column(
+            children: [
+              const Text('Event Details'),
+              const SizedBox(height: 6.0),
+              Text(
+                "Science & Technology",
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
         child: Padding(
-          padding:
-              const EdgeInsets.only(bottom: 50.0), // Add bottom margin here
+          padding: const EdgeInsets.only(bottom: 50.0), 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Event Image with Heart Icon
-              Stack(
+              Container(
+                margin: const EdgeInsets.only(top: 24.0),
+                child: Stack(
                 alignment: Alignment.bottomRight,
                 children: [
                   Container(
@@ -52,24 +68,41 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   ),
                 ],
               ),
+              ),
               const SizedBox(height: 32.0),
 
               // Event Details: Name, Location, Participants, Date
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  Expanded(
+                    child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                        const Text(
                         "Google I/O '24",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0,
                         ),
                       ),
-                      SizedBox(height: 12.0),
-                      Row(
+                        const SizedBox(height: 2.0),
+                        Chip(
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          labelPadding: const EdgeInsets.all(0),
+                          label: const Text(
+                            'By FOSS NSBM',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10.0,
+                            ),
+                          ),
+                          backgroundColor: TColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                        ),
+                        const Row(
                         children: [
                           Icon(
                             Icons.location_on,
@@ -83,10 +116,11 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                               color: Colors.grey,
                             ),
                           ),
+                            SizedBox(height: 28.0),
                         ],
                       ),
-                      SizedBox(height: 12.0),
-                      Row(
+                        const SizedBox(height: 12.0),
+                        const Row(
                         children: [
                           CircleAvatar(
                             backgroundImage: AssetImage(
@@ -110,6 +144,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       ),
                     ],
                   ),
+                  ),
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
@@ -128,8 +163,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                         SizedBox(height: 5),
                         Text(
                           'Apr', // Sample month
-                          style: TextStyle(
-                              fontSize: 20, color: TColors.accent),
+                          style: TextStyle(fontSize: 20, color: TColors.accent),
                         ),
                       ],
                     ),
@@ -139,25 +173,92 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               const SizedBox(height: 16.0),
 
               // Event Description
-              Container(
-                margin:
-                    const EdgeInsets.only(top: 18.0),
-                child: const Text(
-                  'Description', // Title for the event description
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                    color: TColors.primary,
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Description', // Title for the event description
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,
+                        color: TColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 12.0),
+                    // Displaying the description with Read More or Read Less option
+                    buildDescription(),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12.0),
-              // Displaying the description with Read More or Read Less option
-              buildDescription(),
+
+              // Additional Event Information
+              buildAdditionalInformation(),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: Container(
+        height: 65.0,
+        decoration: const BoxDecoration(
+          color: TColors.primary,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(26.0),
+            topRight: Radius.circular(26.0),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Confirm Participation',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'In-person',
+                    style: TextStyle(
+                      color: TColors.darkGrey,
+                      fontSize: 13.0,
+                    ),
+                  ),
+                ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Handle button press
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: TColors.light,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 1.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: const Text(
+                  'Register Now',
+                  style: TextStyle(
+                    color: TColors.black,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+),
     );
   }
 
@@ -196,6 +297,107 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             ),
           ),
       ],
-);
+    );
+  }
+Widget buildAdditionalInformation() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(),
+        const SizedBox(height: 16.0),
+        RichText(
+          text: TextSpan(
+            text: 'Start Time: ',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w300,
+            ),
+            children: const <TextSpan>[
+              TextSpan(
+                text: '9:00 AM',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        RichText(
+          text: TextSpan(
+            text: 'End Time: ',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w300,
+            ),
+            children: const <TextSpan>[
+              TextSpan(
+                text: '5:00 PM',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        const Divider(),
+        const SizedBox(height: 16.0),
+        const Text(
+          'This is a private event',
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.red,
+            fontWeight: FontWeight.w300,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        const Divider(),
+        const SizedBox(height: 16.0),
+        RichText(
+          text: TextSpan(
+            text: 'Event Type: ',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w300,
+            ),
+            children: const <TextSpan>[
+              TextSpan(
+                text: 'In-person',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        const Divider(),
+        const SizedBox(height: 16.0),
+        RichText(
+          text: TextSpan(
+            text: 'Ticket Price: ',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w300,
+            ),
+            children: const <TextSpan>[
+              TextSpan(
+                text: 'Rs.5000.00',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 24.0),
+      ],
+    );
   }
 }
