@@ -8,6 +8,7 @@ class UserModel {
   final String email;
   String profilePicture;
   String university;
+  List<String> likedEvents;
 
   UserModel(
       {required this.id,
@@ -16,7 +17,8 @@ class UserModel {
       required this.username,
       required this.email,
       required this.profilePicture,
-      required this.university});
+      required this.university,
+      required this.likedEvents});
 
 // Helper funciton to get the full name
   String get fullName => "$firstName $lastName";
@@ -43,7 +45,8 @@ class UserModel {
       username: "",
       email: "",
       profilePicture: "",
-      university: "");
+      university: "",
+      likedEvents: List.empty());
 
   Map<String, dynamic> toJson() {
     return {
@@ -54,6 +57,7 @@ class UserModel {
       "email": email,
       "profilePicture": profilePicture,
       "university": university,
+      "likedEvents": likedEvents
     };
   }
 
@@ -62,13 +66,15 @@ class UserModel {
     if (document.data() != null) {
       final data = document.data()!;
       return UserModel(
-          id: document.id,
-          firstName: data["firstName"] ?? "",
-          lastName: data["lastName"] ?? "",
-          username: data["username"] ?? "",
-          email: data["email"] ?? "",
-          profilePicture: data["profilePicture"] ?? "",
-          university: data["university"] ?? "");
+        id: document.id,
+        firstName: data["firstName"] ?? "",
+        lastName: data["lastName"] ?? "",
+        username: data["username"] ?? "",
+        email: data["email"] ?? "",
+        profilePicture: data["profilePicture"] ?? "",
+        university: data["university"] ?? "",
+        likedEvents: List<String>.from(data["likedEvents"]) ?? List.empty(),
+      );
     } else {
       return UserModel.empty();
     }
