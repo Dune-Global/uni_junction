@@ -4,6 +4,8 @@ import 'package:uni_junction/features/event/screens/explore/widgets/explore_app_
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
+import 'package:get/get.dart';
+import 'package:uni_junction/features/event/controllers/event/category_controller.dart'; // Import CategoryController
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
@@ -12,12 +14,10 @@ class ExploreScreen extends StatelessWidget {
     return Scaffold(
       appBar: const ExploreAppBar(),
       body: RefreshIndicator(
-        onRefresh: () {
+        onRefresh: () async {
           PaintingBinding.instance.imageCache.clear();
-
-          return Future.delayed(
-            const Duration(seconds: 1),
-          );
+          await Get.find<CategoryController>().fetchCategoryCounts();
+          await Future.delayed(const Duration(seconds: 1));
         },
         child: SingleChildScrollView(
           child: Column(
