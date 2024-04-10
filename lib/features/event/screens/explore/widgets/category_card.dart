@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:uni_junction/features/event/controllers/event/category_controller.dart';
 import 'package:uni_junction/features/event/screens/explore/category/category.dart';
 
 class CategoryCard extends StatelessWidget {
   final String text;
   final String imageUrl;
   final int numberOfEvents;
-
-  const CategoryCard({
+  CategoryCard({
     super.key,
     required this.text,
     required this.imageUrl,
     this.numberOfEvents = 0,
   });
-
+  final categoryController = Get.put(CategoryController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Category(),
-            ),
-          );
+        onTap: () async {
+          categoryController.categoryName.value = text;
+          await categoryController.fetchEventByCategory(text);
+          Get.to(() => CategoryScreen(
+                numberOfEvents: numberOfEvents,
+              ));
         },
         child: AspectRatio(
           aspectRatio: 1 / 1,

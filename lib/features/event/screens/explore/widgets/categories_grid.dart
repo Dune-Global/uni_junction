@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_junction/features/event/screens/explore/widgets/catergory_card.dart';
+import 'package:uni_junction/features/event/screens/explore/widgets/category_card.dart';
 import 'package:uni_junction/data/services/explore/categories_data.dart';
 import 'package:uni_junction/features/event/controllers/event/category_controller.dart';
 

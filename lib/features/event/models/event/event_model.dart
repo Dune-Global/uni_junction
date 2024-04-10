@@ -89,26 +89,26 @@ class EventModel {
     final data = document.data()!;
     return EventModel(
       id: document.id,
-      userId: data["userId"],
-      title: data["title"],
-      description: data["description"],
-      eventUrl: data["eventUrl"],
+      userId: data["userId"] ?? '',
+      title: data["title"] ?? '',
+      description: data["description"] ?? '',
+      eventUrl: data["eventUrl"] ?? '',
       startDate: data["startDate"].toDate(),
       endDate: data["endDate"]?.toDate(),
       startTime: data["startTime"]?.toDate(),
       endTime: data["endTime"]?.toDate(),
-      imageUrl: data["imageUrl"],
-      location: data["location"],
+      imageUrl: data["imageUrl"] ?? '',
+      location: data["location"] ?? '',
       isPrivate: data["isPrivate"],
       isOrg: data["isOrg"],
-      orgName: data["orgName"],
+      orgName: data["orgName"] ?? '',
       isTicketed: data["isTicketed"],
       ticketPrice: data["ticketPrice"],
-      attendees: List<String>.from(data["attendees"]),
-      eventCategory: data["eventCategory"],
+      attendees: List<String>.from(data["attendees"] ?? []),
+      eventCategory: data["eventCategory"] ?? '',
       headCount: data["headCount"],
       isOnline: data["isOnline"],
-      university: data["university"]
+      university: data["university"] ?? ''
     );
   }
 }
