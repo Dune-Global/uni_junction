@@ -6,13 +6,13 @@ import 'package:uni_junction/features/event/controllers/event/category_controlle
 
 class CategoriesGrid extends StatelessWidget {
   CategoriesGrid({super.key});
-  final CategoryController _categoryController = Get.put(CategoryController());
+  final controller = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final categoryCounts = _categoryController.categoryCounts;
-      return GridView.builder(
+    return Obx(() =>
+       GridView.builder(
+        controller: controller.categoryCounts.isEmpty ? null : ScrollController(),
         itemCount: categories.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -21,14 +21,14 @@ class CategoriesGrid extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context, int index) {
           final category = categories[index];
-          final count = categoryCounts[category['text']] ?? 0;
+          final count = controller.categoryCounts[category['text']] ?? 0;
           return CategoryCard(
             text: category['text']!,
             imageUrl: category['imageUrl']!,
             numberOfEvents: count,
           );
         },
-      );
-    });
+      )
+    );
   }
 }

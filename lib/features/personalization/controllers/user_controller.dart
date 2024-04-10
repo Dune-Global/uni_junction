@@ -28,6 +28,4 @@ class UserController extends GetxController {
       profileLodaing.value = false;
     }
   }
-
-  
 }
