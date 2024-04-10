@@ -3,7 +3,7 @@ import 'package:uni_junction/data/repositories/event/event_repository.dart';
 
 class CategoryController extends GetxController {
   var categoryCounts = <String, int>{'default': 0}.obs;
-  final EventRepository _eventRepository = Get.find();
+  final eventRepository = Get.put(EventRepository());
 
   @override
   void onInit() {
@@ -11,8 +11,12 @@ class CategoryController extends GetxController {
     fetchCategoryCounts();
   }
 
-  void fetchCategoryCounts() async {
-    final counts = await _eventRepository.getEventCategoryCounts();
-    categoryCounts.assignAll(counts);
+  Future<void> fetchCategoryCounts() async {
+    try {
+      final counts = await eventRepository.getEventCategoryCounts();
+      categoryCounts.assignAll(counts);
+    } catch (e) {
+      print(e);
+    }
   }
 }
