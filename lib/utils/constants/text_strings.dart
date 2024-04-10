@@ -93,6 +93,7 @@ class TTexts {
   static const String eventEndTime = "End Time";
   static const String eventCategory = "Event Category";
   static const String eventImage = "Event Image";
+  static const String eventUrl = "Event URL";
 
   
 }

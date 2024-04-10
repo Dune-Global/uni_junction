@@ -1,56 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:uni_junction/common/widgets/appbar/appbar.dart';
-import 'package:uni_junction/features/event/screens/explore/widgets/catergory_card.dart';
+import 'package:uni_junction/features/event/screens/explore/widgets/categories_grid.dart';
+import 'package:uni_junction/features/event/screens/explore/widgets/explore_app_bar.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/search_container.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 
 class ExploreScreen extends StatelessWidget {
-
-  final List<Map<String, String>> categories = const [
-    {
-      'text': 'Science & Technology',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Music & Concerts',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Food & Culinary',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Sports & Recreation',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Arts & Culture',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    {
-      'text': 'Arts & Culture',
-      'imageUrl': 'https://picsum.photos/200/300',
-    },
-    // Add more categories here
-  ];
-
+  const ExploreScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Explore"),
-            Text("Find events near you",
-                style: TextStyle(
-                  color: TColors.grey,
-                  fontSize: 12,
-                ))
-          ],
-        ),
-      ),
+      appBar: const ExploreAppBar(),
       body: RefreshIndicator(
         onRefresh: () {
           PaintingBinding.instance.imageCache.clear();
@@ -62,6 +22,7 @@ class ExploreScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: TSizes.defaultSpace),
               const TSearchContainer(
                 text: "Search for events",
                 color: TColors.black,
@@ -74,21 +35,7 @@ class ExploreScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height * 0.7,
-                      child: GridView.builder(
-                        itemCount: categories.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return CategoryCard(
-                            text: categories[index]['text']!,
-                            imageUrl: categories[index]['imageUrl']!,
-                          );
-                        },
-                      ),
+                      child: CategoriesGrid(),
                     ),
                   ],
                 ),

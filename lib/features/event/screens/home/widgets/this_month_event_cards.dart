@@ -10,20 +10,20 @@ class EventThisMonth extends StatelessWidget {
       required this.location,
       required this.date,
       required this.month,
-      required this.imageUrl});
+      required this.imageUrl,
+      this.onTap});
 
   final String eventName;
   final String location;
   final String date;
   final String month;
   final String imageUrl;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        TLoaders.infoSnackBar("Hello", "You clicked on the card");
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
         child: Container(
