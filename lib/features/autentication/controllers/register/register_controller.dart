@@ -50,6 +50,7 @@ class RegisterController extends GetxController {
         username: userName.text.trim(),
         profilePicture: 'https://avatar.iran.liara.run/public',
         university: selectedUniversity.value,
+        likedEvents: [],
       );
 
       final userRepository = Get.put(UserRepository());

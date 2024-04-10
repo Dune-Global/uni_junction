@@ -18,6 +18,8 @@ class EventController extends GetxController {
   final isOrg = false.obs;
   final isTicketed = false.obs;
   final isOnline = false.obs;
+  final isExpanded = false.obs;
+  final isHeart = false.obs;
 
   final selectedUniversity = 'Select a university'.obs;
   final universityList = universityLists.obs;
@@ -39,6 +41,10 @@ class EventController extends GetxController {
   final headCount = TextEditingController();
 
   GlobalKey<FormState> eventFormKey = GlobalKey<FormState>();
+
+  void toggleHeart() {
+    isHeart.value = !isHeart.value;
+  }
 
   Future<void> selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -143,7 +149,6 @@ class EventController extends GetxController {
       isTicketed.value = false;
       selectedEventCategory.value = 'Select a category';
       selectedUniversity.value = 'Select a university';
-      
     } catch (e) {
       TLoaders.errorSnackBar("Error", e.toString());
       TFullScreenLoader.stopLoading();
