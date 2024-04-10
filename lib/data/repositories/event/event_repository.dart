@@ -26,4 +26,21 @@ class EventRepository extends GetxController {
       throw e.toString();
     }
   }
+
+  Future<Map<String, int>> getEventCategoryCounts() async {
+    final querySnapshot = await _db.collection("Events").get();
+    final docs = querySnapshot.docs;
+
+    final Map<String, int> categoryCounts = {};
+
+    for (var doc in docs) {
+      final category = doc.data()['eventCategory'];
+      if (category != null && category is String) {
+        categoryCounts[category] = (categoryCounts[category] ?? 0) + 1;
+      }
+    }
+
+    return categoryCounts;
+  }
+  
 }
