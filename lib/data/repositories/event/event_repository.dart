@@ -30,7 +30,6 @@ class EventRepository extends GetxController {
   Future<Map<String, int>> getEventCategoryCounts() async {
     final querySnapshot = await _db
         .collection("Events")
-        .where("endDate", isGreaterThanOrEqualTo: DateTime.now())
         .get();
     final docs = querySnapshot.docs;
 
@@ -50,8 +49,6 @@ class EventRepository extends GetxController {
     final querySnapshot = await _db
         .collection("Events")
         .where("eventCategory", isEqualTo: categoryName)
-        .where("endDate", isGreaterThanOrEqualTo: DateTime.now())
-        .orderBy("startDate")
         .get();
     final docs = querySnapshot.docs;
 
