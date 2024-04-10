@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:uni_junction/data/repositories/event/event_repository.dart';
 import 'package:uni_junction/features/event/models/event/event_model.dart';
@@ -28,6 +30,7 @@ class CategoryController extends GetxController {
       final events = await eventRepository.getEventsByCategory(categoryName);
       eventsByCategory.assignAll(events);
       eventsByCategory.forEach((event) {
+        
       });
     } catch (e) {
       print(e);
