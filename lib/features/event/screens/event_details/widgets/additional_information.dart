@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import 'package:uni_junction/data/services/event_category/event_category_list.dart';
@@ -26,7 +29,9 @@ class TAdditionalInformationWidget extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: eventController.selectedEndTime.value.split(' ')[1].split('.')[0],
+                text: eventController.selectedEndTime.value
+                    .split(' ')[1]
+                    .split('.')[0],
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                 ),
@@ -45,7 +50,9 @@ class TAdditionalInformationWidget extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: eventController.endDate.value.toString(),
+                text: eventController.selectedEndTime.value
+                    .split(' ')[1]
+                    .split('.')[0],
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                 ),
@@ -56,15 +63,25 @@ class TAdditionalInformationWidget extends StatelessWidget {
         const SizedBox(height: 16.0),
         const Divider(),
         const SizedBox(height: 16.0),
-        const Text(
-          'This is a private event',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: TColors.error,
-            fontWeight: FontWeight.w500,
-            fontStyle: FontStyle.italic,
+        if (eventController.selectedIsPrivate.value)
+          const Text(
+            'This is a private event',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: TColors.error,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.italic,
+            ),
+          )
+        else
+          const Text(
+            'This is a public event',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: TColors.darkerGrey,
+              fontWeight: FontWeight.w500,
+            ),
           ),
-        ),
         const SizedBox(height: 16.0),
         const Divider(),
         const SizedBox(height: 16.0),
@@ -90,7 +107,7 @@ class TAdditionalInformationWidget extends StatelessWidget {
         const Divider(),
         const SizedBox(height: 16.0),
         RichText(
-          text: const TextSpan(
+          text: TextSpan(
             text: 'Ticket Price: ',
             style: TextStyle(
               fontSize: 16.0,
@@ -99,7 +116,9 @@ class TAdditionalInformationWidget extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: 'Rs.5000.00',
+                text: eventController.selectedIsTicketed.value
+                    ? eventController.selectedTicketPrice.value
+                    : 'Free',
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                 ),
