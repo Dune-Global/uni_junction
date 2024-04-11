@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_all.dart';
-import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
 import 'package:uni_junction/features/event/screens/profile/widgets/editprofile.dart';
 import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
