@@ -69,20 +69,20 @@ class CategoryScreen extends StatelessWidget {
                           Obx(
                             () => Text(
                               controller.categoryName.value,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: TColors.accent, fontSize: 22),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: TSizes.sm,
                           ),
                           numberOfEvents > 0
                               ? RichText(
                                   text: TextSpan(
                                     children: [
-                                      TextSpan(
+                                      const TextSpan(
                                         text: "Explore these ",
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: TColors.softGrey,
                                         ),
                                       ),
@@ -93,22 +93,22 @@ class CategoryScreen extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' Events ',
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             color: TColors.softGrey,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: "instantly",
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: TColors.softGrey,
                                         ),
                                       )
                                     ],
                                   ),
                                 )
-                              : Container(), // Render an empty Container when numberOfEvents is 0
+                              : Container(),
                         ],
                       ),
                     ),

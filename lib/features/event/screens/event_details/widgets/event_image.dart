@@ -5,7 +5,7 @@ import 'package:uni_junction/features/event/controllers/event/event_controller.d
 import 'package:uni_junction/utils/constants/colors.dart';
 
 class TEventImage extends StatelessWidget {
-  TEventImage({super.key});
+  TEventImage({Key? key}) : super(key: key);
   final eventController = Get.put(EventController());
 
   @override
@@ -27,15 +27,26 @@ class TEventImage extends StatelessWidget {
               ),
               height: 350,
             ),
-            IconButton(
-              onPressed: () => eventController.toggleHeart(),
-              icon: Icon(
-                eventController.isHeart.value ? Iconsax.heart : Iconsax.heart5,
-                color: eventController.isHeart.value
-                    ? TColors.white
-                    : TColors.error,
-              ),
-            ),
+            FutureBuilder<bool>(
+              future: eventController.hasLikedEvent(eventController.selectedEventId.value),
+              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Icon(Iconsax.heart); 
+                } else if (snapshot.hasError) {
+                  return const Icon(Icons.error); 
+                } else {
+                  return IconButton(
+                    onPressed: () => eventController.toggleHeart(
+                      eventController.selectedEventId.value,
+                    ),
+                    icon: Icon(
+                      snapshot.data! ? Icons.favorite : Icons.favorite_border,
+                      color: snapshot.data! ? TColors.error : TColors.white,
+                    ),
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
