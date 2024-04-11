@@ -52,7 +52,6 @@ class UserRepository extends GetxController {
     }
   }
 
-
   // push events to users likedEvents array
   Future<void> pushLikedEvents(String eventId) async {
     try {
@@ -94,6 +93,10 @@ class UserRepository extends GetxController {
     try {
       final user = await fetchUserDetails();
       return user.likedEvents.contains(eventId);
+    } catch (e) {
+      throw e;
+    }
+  }
 
   //update user
   Future<void> updateUser(UserModel user) async {
