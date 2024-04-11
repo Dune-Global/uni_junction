@@ -79,7 +79,7 @@ class EventDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const TEventDetailsBottomBar(),
+      bottomNavigationBar: TEventDetailsBottomBar(),
     );
   }
 

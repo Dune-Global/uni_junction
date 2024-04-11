@@ -21,6 +21,7 @@ class EventController extends GetxController {
   final isOnline = false.obs;
   final isExpanded = false.obs;
   final isHeart = false.obs;
+  final isRegistered = false.obs;
 
   final selectedUniversity = 'Select a university'.obs;
   final universityList = universityLists.obs;
@@ -64,8 +65,13 @@ class EventController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     hasLikedEvent(selectedEventId.value).then((value) {
       isHeart.value = value;
+    });
+
+    isUserAttendingEvent(selectedEventId.value).then((value) {
+      isRegistered.value = value;
     });
   }
 
@@ -75,6 +81,15 @@ class EventController extends GetxController {
       pushLikedEvents(eventId);
     } else {
       removeLikedEvents(eventId);
+    }
+  }
+
+  void toggleRegister(String eventId) {
+    isRegistered.value = !isRegistered.value;
+    if (isRegistered.value) {
+      registerUserForEvent(eventId);
+    } else {
+      removeUserFromEvent(eventId);
     }
   }
 
@@ -213,5 +228,43 @@ class EventController extends GetxController {
   Future<bool> hasLikedEvent(String eventId) async {
     final userRepository = Get.put(UserRepository());
     return userRepository.hasLikedEvent(eventId);
+  }
+
+  // Add user to the attendee array
+  Future<void> registerUserForEvent(String eventId) async {
+    try {
+      TFullScreenLoader.openLoadingDialog(
+          "Registering for event", TImages.onBoardingImage3);
+      final eventRepository = Get.put(EventRepository());
+      eventRepository.pushUser(eventId);
+      isRegistered.value = true;
+      TLoaders.successSnackBar("Success", "You have registered for the event");
+      TFullScreenLoader.stopLoading();
+      Get.to(() => const NavigationMenu());
+    } catch (e) {
+      TLoaders.errorSnackBar("Error", e.toString());
+      TFullScreenLoader.stopLoading();
+    } finally {
+      TFullScreenLoader.stopLoading();
+    }
+  }
+
+  // Remove user from the attendee array
+  Future<void> removeUserFromEvent(String eventId) async {
+    try {
+      final eventRepository = Get.put(EventRepository());
+      eventRepository.removeUser(eventId);
+      isRegistered.value = false;
+      TLoaders.successSnackBar(
+          "Success", "You have unregistered from the event");
+    } catch (e) {
+      TLoaders.errorSnackBar("Error", e.toString());
+    }
+  }
+
+  // Check if user is attending the event
+  Future<bool> isUserAttendingEvent(String eventId) async {
+      final eventRepository = Get.put(EventRepository());
+      return eventRepository.isUserAttending(eventId);
   }
 }
