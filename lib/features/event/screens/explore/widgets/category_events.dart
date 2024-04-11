@@ -34,7 +34,7 @@ class TCategoryEvents extends StatelessWidget {
                   ),
                   Text(
                       style: TextStyle(fontSize: 17),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.center,     
                       "Sorry, there are no events currently for this category"),
                 ],
               ),
