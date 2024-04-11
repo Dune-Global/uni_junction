@@ -15,6 +15,7 @@ import 'package:uni_junction/utils/constants/image_strings.dart';
 import 'package:uni_junction/utils/popup/full_screen_loader.dart';
 import 'package:uni_junction/data/services/university/universities.dart';
 import 'package:uni_junction/data/services/event_category/event_category_list.dart';
+import 'dart:convert';
 
 class EventController extends GetxController {
   static EventController get instance => Get.find();
@@ -36,6 +37,8 @@ class EventController extends GetxController {
 
   final selectedEventCategory = 'Select a category'.obs;
   final eventCategoryList = eventCategoryLists.obs;
+
+  final userLikedEvents = <EventModel>[].obs;
 
   // Variables
   final startDate = TextEditingController();
@@ -98,6 +101,21 @@ class EventController extends GetxController {
       registerUserForEvent(eventId);
     } else {
       removeUserFromEvent(eventId);
+    }
+  }
+
+  Future<void> fetchUserLikedEvents() async {
+    try {
+      final userRepository = Get.put(UserRepository());
+      final events = await userRepository.getUserLikedEvents();
+      userLikedEvents.assignAll(events);
+
+      // Convert each event to JSON and print it
+      for (var event in events) {
+        print(jsonEncode(event.toJson()));
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 
@@ -273,8 +291,8 @@ class EventController extends GetxController {
 
   // Check if user is attending the event
   Future<bool> isUserAttendingEvent(String eventId) async {
-      final eventRepository = Get.put(EventRepository());
-      return eventRepository.isUserAttending(eventId);
+    final eventRepository = Get.put(EventRepository());
+    return eventRepository.isUserAttending(eventId);
   }
 
   Future<void> pickImage() async {

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uni_junction/data/repositories/authentication/authentication_repository.dart';
+import 'package:uni_junction/features/event/models/event/event_model.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
 import 'package:uni_junction/utils/exceptions/firebase_exceptions.dart';
 import 'package:uni_junction/utils/exceptions/format_exceptions.dart';
@@ -101,7 +102,27 @@ class UserRepository extends GetxController {
       throw e;
     }
   }
+  // Get user liked events
+  Future<List<EventModel>> getUserLikedEvents() async {
+    try {
+      final user = await fetchUserDetails();
+      final likedEventIds = user.likedEvents;
 
+      // Print likedEventIds
+      print('Liked event ids: $likedEventIds');
+
+      final List<EventModel> likedEvents = [];
+      for (var eventId in likedEventIds) {
+        final doc = await _db.collection("Events").doc(eventId).get();
+        if (doc.exists) {
+          likedEvents.add(EventModel.fromSnapshot(doc));
+        }
+      }
+      return likedEvents;
+    } catch (e) {
+      throw e;
+    }
+  }
   //update user
   Future<void> updateUser(UserModel user) async {
     try {
