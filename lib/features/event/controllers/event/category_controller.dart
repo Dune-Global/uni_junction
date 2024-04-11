@@ -30,7 +30,6 @@ class CategoryController extends GetxController {
       final events = await eventRepository.getEventsByCategory(categoryName);
       eventsByCategory.assignAll(events);
       eventsByCategory.forEach((event) {
-        
       });
     } catch (e) {
       print(e);
