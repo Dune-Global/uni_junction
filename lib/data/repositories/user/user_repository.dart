@@ -118,20 +118,17 @@ class UserRepository extends GetxController {
   }
 
 
-  Future<String> uploadImage(String path, XFile image) async {
-    try {
-      final ref = FirebaseStorage.instance.ref(path).child(image.name);
-      await ref.putFile(File(image.path));
-      final url = await ref.getDownloadURL();
-      return url;
-    } on FirebaseException catch (e) {
-      throw TFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatException();
-    } on PlatformException catch (e) {
-      throw TPlatformException(e.code).message;
-    } catch (e) {
-      throw "Something went wrong";
-    }
+ Future<String> uploadImage(String path, XFile image) async {
+  try {
+    print('Uploading image...');
+    final ref = FirebaseStorage.instance.ref(path).child(image.name);
+    await ref.putFile(File(image.path));
+    final url = await ref.getDownloadURL();
+    print('Image uploaded successfully. URL: $url');
+    return url;
+  } catch (e) {
+    print('Error uploading image: $e');
+    throw e;
   }
+}
 }

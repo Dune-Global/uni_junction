@@ -59,8 +59,7 @@ class EditProfile extends StatelessWidget {
                     right: 0,
                     child: InkWell(
                       onTap: () {
-                        // Add your code here
-                        // controller.updateProfilePicture();
+                        controller.updateProfilePicture();
                       },
                       child: Container(
                         width: 35,
@@ -82,7 +81,6 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-
               Form(
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
@@ -172,26 +170,6 @@ class EditProfile extends StatelessWidget {
                   ),
                 ),
               )
-
-              // TextFormField(
-              //   decoration: const InputDecoration(
-              //     prefixIcon: Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(left: 20),
-              //         child: Icon(Iconsax.password_check),
-              //       ),
-              //     ),
-              //     suffixIcon: Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(right: 20),
-              //         child: Icon(Iconsax.eye_slash),
-              //       ),
-              //     ),
-              //     labelText: TTexts.password,
-              //   ),
-              // ),
             ],
           ),
         ),

@@ -24,16 +24,21 @@ class ProfileScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                SizedBox(
-                  width: 150,
-                  height: 150,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: const Image(
-                        image: NetworkImage(
-                            'https://avatar.iran.liara.run/public/21')),
-                  ),
-                ),
+                Obx(() {
+                  if (controller.profileLodaing.value) {
+                    return const CircularProgressIndicator();
+                  }
+                  return SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image(
+                          image: NetworkImage(
+                              controller.user.value.profilePicture)),
+                    ),
+                  );
+                }),
                 const SizedBox(height: TSizes.md),
                 Obx(() {
                   if (controller.profileLodaing.value) {
