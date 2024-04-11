@@ -40,11 +40,19 @@ class EditProfile extends StatelessWidget {
                     width: 150,
                     height: 150,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Image(
-                          image: NetworkImage(
-                              'https://avatar.iran.liara.run/public/21')),
-                    ),
+                        borderRadius: BorderRadius.circular(100),
+                        child: Obx(() {
+                          return Image.network(
+                            controller.user.value.profilePicture,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Image(
+                                image: NetworkImage(
+                                    'https://avatar.iran.liara.run/public/21'),
+                              );
+                            },
+                          );
+                        })),
                   ),
                   Positioned(
                     bottom: 0,
@@ -52,6 +60,7 @@ class EditProfile extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         // Add your code here
+                        // controller.updateProfilePicture();
                       },
                       child: Container(
                         width: 35,
@@ -153,7 +162,7 @@ class EditProfile extends StatelessWidget {
                               username: username.text,
                             );
                             await controller.updateRecord(userData);
-                             await controller.fetchUserRecord();
+                            await controller.fetchUserRecord();
                             // Add your code here
                           },
                           child: const Text(TTexts.save),
