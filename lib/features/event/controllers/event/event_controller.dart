@@ -1,9 +1,14 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uni_junction/common/widgets/loaders/snackbar_popup.dart';
 import 'package:uni_junction/data/repositories/event/event_repository.dart';
 import 'package:uni_junction/data/repositories/user/user_repository.dart';
 import 'package:uni_junction/features/event/models/event/event_model.dart';
+import 'package:uni_junction/features/event/screens/explore/category/category.dart';
 import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/navigation_menu.dart';
 import 'package:uni_junction/utils/constants/image_strings.dart';
@@ -15,6 +20,9 @@ import 'dart:convert';
 class EventController extends GetxController {
   static EventController get instance => Get.find();
   final controller = Get.put(UserController());
+  final pickedImage = Rxn<XFile>();
+  final imageUrl = Rxn<String>();
+  // var isImagePicked = false.obs;
 
   final isPrivate = false.obs;
   final isOrg = false.obs;
@@ -174,7 +182,7 @@ class EventController extends GetxController {
         endDate: DateTime.parse(endDate.text.trim()),
         startTime: parseTime(startTime.text.trim()),
         endTime: parseTime(endTime.text.trim()),
-        imageUrl: "",
+        imageUrl: imageUrl.value ?? "",
         location: location.text.trim(),
         eventUrl: eventUrl.text.trim(),
         orgName: orgName.text.trim(),
@@ -208,6 +216,7 @@ class EventController extends GetxController {
       orgName.clear();
       ticketPrice.clear();
       headCount.clear();
+      pickedImage.value = null;
       isOnline.value = false;
       isOrg.value = false;
       isPrivate.value = false;
@@ -284,5 +293,28 @@ class EventController extends GetxController {
   Future<bool> isUserAttendingEvent(String eventId) async {
     final eventRepository = Get.put(EventRepository());
     return eventRepository.isUserAttending(eventId);
+  }
+
+  Future<void> pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      pickedImage.value = image;
+    }
+    await uploadEventImage();
+  }
+
+  Future<void> uploadEventImage() async {
+    if (pickedImage.value != null) {
+      final Reference storageReference = FirebaseStorage.instance
+          .ref()
+          .child('events/${DateTime.now().toIso8601String()}');
+      final UploadTask uploadTask =
+          storageReference.putFile(File(pickedImage.value!.path));
+      await uploadTask.whenComplete(() => null);
+      final String eventImageUrl =
+          await storageReference.getDownloadURL(); // what is this? This is
+      imageUrl.value = eventImageUrl;
+    }
   }
 }
