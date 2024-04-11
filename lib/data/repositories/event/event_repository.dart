@@ -28,7 +28,9 @@ class EventRepository extends GetxController {
   }
 
   Future<Map<String, int>> getEventCategoryCounts() async {
-    final querySnapshot = await _db.collection("Events").get();
+    final querySnapshot = await _db
+        .collection("Events")
+        .get();
     final docs = querySnapshot.docs;
 
     final Map<String, int> categoryCounts = {};
@@ -42,5 +44,19 @@ class EventRepository extends GetxController {
 
     return categoryCounts;
   }
-  
+
+  Future<List<EventModel>> getEventsByCategory(String categoryName) async {
+    final querySnapshot = await _db
+        .collection("Events")
+        .where("eventCategory", isEqualTo: categoryName)
+        .get();
+    final docs = querySnapshot.docs;
+
+    final List<EventModel> events = [];
+
+    for (var doc in docs) {
+      events.add(EventModel.fromSnapshot(doc));
+    }
+    return events;
+  }
 }

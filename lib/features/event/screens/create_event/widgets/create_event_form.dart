@@ -27,7 +27,7 @@ class TCreateEventForm extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
                 child: Column(
                   children: [
-                    const SizedBox(height: TSizes.spaceBtwSections * 2),
+                    const SizedBox(height: TSizes.spaceBtwSections),
                     Text(
                       "Welcome to event creation!",
                       style: Theme.of(context)
@@ -46,7 +46,7 @@ class TCreateEventForm extends StatelessWidget {
                             .apply(color: TColors.primary),
                       ),
                     ),
-                    const SizedBox(height: TSizes.spaceBtwSections * 2),
+                    const SizedBox(height: TSizes.spaceBtwSections ),
                     TextFormField(
                       controller: controller.title,
                       decoration: const InputDecoration(
