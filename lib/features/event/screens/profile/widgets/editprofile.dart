@@ -40,18 +40,26 @@ class EditProfile extends StatelessWidget {
                     width: 150,
                     height: 150,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Image(
-                          image: NetworkImage(
-                              'https://avatar.iran.liara.run/public/21')),
-                    ),
+                        borderRadius: BorderRadius.circular(100),
+                        child: Obx(() {
+                          return Image.network(
+                            controller.user.value.profilePicture,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Image(
+                                image: NetworkImage(
+                                    'https://avatar.iran.liara.run/public/21'),
+                              );
+                            },
+                          );
+                        })),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: InkWell(
                       onTap: () {
-                        // Add your code here
+                        controller.updateProfilePicture();
                       },
                       child: Container(
                         width: 35,
@@ -73,7 +81,6 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-
               Form(
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
@@ -153,7 +160,7 @@ class EditProfile extends StatelessWidget {
                               username: username.text,
                             );
                             await controller.updateRecord(userData);
-                             await controller.fetchUserRecord();
+                            await controller.fetchUserRecord();
                             // Add your code here
                           },
                           child: const Text(TTexts.save),
@@ -163,26 +170,6 @@ class EditProfile extends StatelessWidget {
                   ),
                 ),
               )
-
-              // TextFormField(
-              //   decoration: const InputDecoration(
-              //     prefixIcon: Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(left: 20),
-              //         child: Icon(Iconsax.password_check),
-              //       ),
-              //     ),
-              //     suffixIcon: Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(right: 20),
-              //         child: Icon(Iconsax.eye_slash),
-              //       ),
-              //     ),
-              //     labelText: TTexts.password,
-              //   ),
-              // ),
             ],
           ),
         ),

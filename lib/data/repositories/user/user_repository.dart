@@ -1,8 +1,12 @@
 // ignore_for_file: dead_code_on_catch_subtype
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uni_junction/data/repositories/authentication/authentication_repository.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
 import 'package:uni_junction/utils/exceptions/firebase_exceptions.dart';
@@ -112,4 +116,19 @@ class UserRepository extends GetxController {
       throw "Something went wrong";
     }
   }
+
+
+ Future<String> uploadImage(String path, XFile image) async {
+  try {
+    print('Uploading image...');
+    final ref = FirebaseStorage.instance.ref(path).child(image.name);
+    await ref.putFile(File(image.path));
+    final url = await ref.getDownloadURL();
+    print('Image uploaded successfully. URL: $url');
+    return url;
+  } catch (e) {
+    print('Error uploading image: $e');
+    throw e;
+  }
+}
 }
