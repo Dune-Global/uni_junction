@@ -63,6 +63,7 @@ class EventModel {
     return {
       "id": id,
       "title": title,
+      "userId": userId,
       "description": description,
       "eventUrl": eventUrl,
       "startDate": startDate,
