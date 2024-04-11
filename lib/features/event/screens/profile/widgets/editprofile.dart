@@ -1,11 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:uni_junction/features/event/controllers/profile/profile.contoller.dart';
 import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
