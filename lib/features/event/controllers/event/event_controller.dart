@@ -40,6 +40,24 @@ class EventController extends GetxController {
   final ticketPrice = TextEditingController();
   final headCount = TextEditingController();
 
+  // Seletcted Event details
+  final selectedTitle = ''.obs;
+  final selectedDescription = ''.obs;
+  final selectedStartDate = ''.obs;
+  final selectedEndDate = ''.obs;
+  final selectedStartTime = ''.obs;
+  final selectedEndTime = ''.obs;
+  final selectedLocation = ''.obs;
+  final selectedEventUrl = ''.obs;
+  final selectedOrgName = ''.obs;
+  final selectedTicketPrice = ''.obs;
+  final selectedHeadCount = ''.obs;
+  final selectedIsOnline = false.obs;
+  final selectedIsOrg = false.obs;
+  final selectedIsPrivate = false.obs;
+  final selectedIsTicketed = false.obs;
+
+
   GlobalKey<FormState> eventFormKey = GlobalKey<FormState>();
 
   void toggleHeart() {
