@@ -52,6 +52,7 @@ class UserRepository extends GetxController {
     }
   }
 
+
   // push events to users likedEvents array
   Future<void> pushLikedEvents(String eventId) async {
     try {
@@ -93,6 +94,11 @@ class UserRepository extends GetxController {
     try {
       final user = await fetchUserDetails();
       return user.likedEvents.contains(eventId);
+
+  //update user
+  Future<void> updateUser(UserModel user) async {
+    try {
+      await _db.collection("Users").doc(user.id).update(user.toJson());
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {

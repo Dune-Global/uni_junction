@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax/iconsax.dart';
@@ -17,6 +18,13 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
+    final firstname =
+        TextEditingController(text: controller.user.value.firstName);
+    final lastname =
+        TextEditingController(text: controller.user.value.lastName);
+    final username =
+        TextEditingController(text: controller.user.value.username);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(TTexts.editProfile),
@@ -76,8 +84,7 @@ class EditProfile extends StatelessWidget {
                           return const CircularProgressIndicator();
                         }
                         return TextFormField(
-                          controller: TextEditingController(
-                              text: controller.user.value.firstName),
+                          controller: firstname,
                           decoration: const InputDecoration(
                             prefixIcon: Padding(
                               padding: EdgeInsets.all(8.0),
@@ -96,8 +103,7 @@ class EditProfile extends StatelessWidget {
                           return const CircularProgressIndicator();
                         }
                         return TextFormField(
-                          controller: TextEditingController(
-                              text: controller.user.value.lastName),
+                          controller: lastname,
                           decoration: const InputDecoration(
                             prefixIcon: Padding(
                               padding: EdgeInsets.all(8.0),
@@ -116,8 +122,7 @@ class EditProfile extends StatelessWidget {
                           return const CircularProgressIndicator();
                         }
                         return TextFormField(
-                          controller: TextEditingController(
-                              text: controller.user.value.username),
+                          controller: username,
                           decoration: const InputDecoration(
                             prefixIcon: Padding(
                               padding: EdgeInsets.all(8.0),
@@ -135,7 +140,20 @@ class EditProfile extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            final userData = UserModel(
+                              id: controller.user.value.id,
+                              email: controller.user.value.email,
+                              profilePicture:
+                                  controller.user.value.profilePicture,
+                              university: controller.user.value.university,
+                              likedEvents: controller.user.value.likedEvents,
+                              firstName: firstname.text,
+                              lastName: lastname.text,
+                              username: username.text,
+                            );
+                            await controller.updateRecord(userData);
+                             await controller.fetchUserRecord();
                             // Add your code here
                           },
                           child: const Text(TTexts.save),
