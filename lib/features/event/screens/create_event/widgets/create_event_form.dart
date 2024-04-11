@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -46,7 +48,9 @@ class TCreateEventForm extends StatelessWidget {
                             .apply(color: TColors.primary),
                       ),
                     ),
-                    const SizedBox(height: TSizes.spaceBtwSections ),
+                    const SizedBox(height: TSizes.spaceBtwSections),
+                    // ...
+
                     TextFormField(
                       controller: controller.title,
                       decoration: const InputDecoration(
@@ -525,11 +529,37 @@ class TCreateEventForm extends StatelessWidget {
                     const SizedBox(
                       height: TSizes.spaceBtwSections * 2,
                     ),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   child: ElevatedButton(
+                    //     onPressed: () => controller.pickImage(),
+                    //     child: Text('Pick an image'),
+                    //   ),
+                    // ),
+
+                    Obx(
+                      () => controller.pickedImage.value != null
+                          ? Image.file(File(controller.pickedImage.value!.path))
+                          : SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () => controller.pickImage(),
+                                child: Text('Pick an image'),
+                              ),
+                            ),
+                    ),
+                    const SizedBox(
+                      height: TSizes.spaceBtwInputFields,
+                    ),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () => controller.addEvent(),
-                          child: const Text("Submit")),
+                        onPressed: () async {
+                          await controller.uploadEventImage();
+                          controller.addEvent();
+                        },
+                        child: const Text("Submit"),
+                      ),
                     ),
                   ],
                 ),
