@@ -38,86 +38,84 @@ class TPopularEventCards extends StatelessWidget {
                           fit: BoxFit.cover,
                           child: Container(),
                         ),
-                        // Date Container
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Colors.black.withOpacity(0.5),
+                                Colors.black.withOpacity(0.85),
+                              ],
+                            ),
+                          ),
+                          child: const SizedBox.expand(),
+                        ),
                         Positioned(
                           top: 10,
                           right: 10,
                           child: Container(
                             padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.circular(5),
-                            ),
                             child: Column(
                               children: <Widget>[
                                 Text(
                                   event.date.split(' ')[0],
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: TColors.white),
                                 ),
                                 Text(
                                   event.date.split(' ')[1],
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(
+                                      fontSize: 16, color: TColors.white),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-    
-                  // Event Details Container
-                  Positioned(
-                    bottom: 0,
-                    left:
-                        MediaQuery.of(context).size.width * 0.08,
-                    child: Center(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width *
-                            0.6,
-                        padding: const EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(100),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            const Icon(
-                              Icons.location_on,
-                              color: TColors.primary,
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  event.eventName,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .apply(
-                                          color: TColors.primary),
-                                ),
-                                Text(
-                                  event.location,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .apply(
-                                        color: TColors.primary,
+                        Positioned(
+                          bottom: 10,
+                          left: 10,
+                          child: Center(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              padding: const EdgeInsets.all(7),
+                              child: Row(
+                                children: <Widget>[
+                                  const Icon(
+                                    Icons.location_on,
+                                    color: TColors.accent,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        event.eventName,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .apply(color: TColors.grey),
                                       ),
-                                ),
-                              ],
+                                      Text(
+                                        event.location,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .apply(
+                                              color: TColors.accent.withOpacity(0.7),
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
