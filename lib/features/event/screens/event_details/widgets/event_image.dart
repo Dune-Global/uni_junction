@@ -40,7 +40,7 @@ class TEventImage extends StatelessWidget {
                       eventController.selectedEventId.value,
                     ),
                     icon: Icon(
-                      Icons.favorite,
+                      snapshot.data! ? Icons.favorite : Icons.favorite_border,
                       color: snapshot.data! ? TColors.error : TColors.white,
                     ),
                   );
