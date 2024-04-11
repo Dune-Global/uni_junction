@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_junction/features/event/controllers/event/category_controller.dart';
+import 'package:uni_junction/features/event/controllers/event/event_controller.dart';
+import 'package:uni_junction/features/event/screens/event_details/event_details.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
 import 'package:uni_junction/test/test_page.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
@@ -14,6 +16,7 @@ class TCategoryEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
+    final eventController = Get.put(EventController());
 
     return categoryController.eventsByCategory.isEmpty
         ? Center(
@@ -50,10 +53,27 @@ class TCategoryEvents extends StatelessWidget {
                   location: event.location ?? 'Location not provided',
                   imageUrl:
                       event.imageUrl.isEmpty ? defaultImageUrl : event.imageUrl,
-                  onTap: () => Get.to(() => TestScreen(
-                      title: event.title,
-                      description:
-                          event.description ?? 'No description provided')),
+                  onTap: () => {
+                      eventController.selectedTitle.value = event.title,
+                      eventController.selectedDescription.value = event.description,
+                      eventController.selectedStartDate.value = event.startDate.toString(),
+                      eventController.selectedEndDate.value = event.endDate.toString(),
+                      eventController.selectedStartTime.value = event.startTime.toString(),
+                      eventController.selectedEndTime.value = event.endTime.toString(),
+                      eventController.selectedLocation.value = event.location,
+                      eventController.selectedEventUrl.value = event.eventUrl.toString(),
+                      eventController.selectedOrgName.value = event.orgName.toString(),
+                      eventController.selectedTicketPrice.value = event.ticketPrice.toString(),
+                      eventController.selectedHeadCount.value = event.headCount.toString(),
+                      eventController.selectedIsOnline.value = event.isOnline.toString() == 'true',
+                      eventController.selectedIsOrg.value = event.isOrg.toString() == 'true',
+                      eventController.selectedIsPrivate.value = event.isPrivate.toString() == 'true',
+                      eventController.selectedIsTicketed.value = event.isTicketed.toString() == 'true',
+
+                    Get.to(
+                      () => EventDetailsScreen(),
+                    ),
+                  },
                 ),
                 SizedBox(height: TSizes.spaceBtwSections),
               ];

@@ -1,8 +1,13 @@
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
+import 'package:uni_junction/data/services/event_category/event_category_list.dart';
+import 'package:uni_junction/features/event/controllers/event/event_controller.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 
 class TAdditionalInformationWidget extends StatelessWidget {
-  const TAdditionalInformationWidget({super.key});
+  TAdditionalInformationWidget({super.key});
+
+  final eventController = Get.put(EventController());
 
   @override
   Widget build(BuildContext context) {
@@ -12,18 +17,18 @@ class TAdditionalInformationWidget extends StatelessWidget {
         const Divider(),
         const SizedBox(height: 16.0),
         RichText(
-          text: const TextSpan(
+          text: TextSpan(
             text: 'Start Time: ',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
               color: TColors.darkerGrey,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w500,
             ),
             children: <TextSpan>[
               TextSpan(
-                text: '9:00 AM',
+                text: eventController.selectedEndTime.value.split(' ')[1].split('.')[0],
                 style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
@@ -31,18 +36,18 @@ class TAdditionalInformationWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16.0),
         RichText(
-          text: const TextSpan(
+          text: TextSpan(
             text: 'End Time: ',
             style: TextStyle(
               fontSize: 16.0,
               color: TColors.darkerGrey,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w500,
             ),
             children: <TextSpan>[
               TextSpan(
-                text: '5:00 PM',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                text: eventController.endDate.value.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
@@ -56,7 +61,7 @@ class TAdditionalInformationWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: 16.0,
             color: TColors.error,
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w500,
             fontStyle: FontStyle.italic,
           ),
         ),
@@ -69,13 +74,13 @@ class TAdditionalInformationWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.0,
               color: TColors.darkerGrey,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w500,
             ),
             children: <TextSpan>[
               TextSpan(
                 text: 'In-person',
                 style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
@@ -90,13 +95,13 @@ class TAdditionalInformationWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.0,
               color: TColors.darkerGrey,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w500,
             ),
             children: <TextSpan>[
               TextSpan(
                 text: 'Rs.5000.00',
                 style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],

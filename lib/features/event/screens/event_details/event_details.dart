@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_junction/common/widgets/appbar/appbar.dart';
+import 'package:uni_junction/features/event/controllers/event/category_controller.dart';
 import 'package:uni_junction/features/event/controllers/event/event_controller.dart';
 import 'package:uni_junction/features/event/screens/event_details/widgets/additional_information.dart';
 import 'package:uni_junction/features/event/screens/event_details/widgets/event_details_bottom_bar.dart';
@@ -13,19 +14,20 @@ class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({super.key});
 
   final eventController = Get.put(EventController());
+  final categoryController = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(
+      appBar: TAppBar(
         title: Center(
           child: Column(
             children: [
-              Text('Event Details'),
-              SizedBox(height: 6.0),
+              const Text('Event Details'),
+              const SizedBox(height: 6.0),
               Text(
-                "Science & Technology",
-                style: TextStyle(
+                categoryController.categoryName.value,
+                style: const TextStyle(
                   color: TColors.darkGrey,
                   fontWeight: FontWeight.w500,
                   fontSize: 16.0,
@@ -47,7 +49,7 @@ class EventDetailsScreen extends StatelessWidget {
               const SizedBox(height: 32.0),
 
               // Event Details: Name, Location, Participants, Date
-              const TEventDetails(),
+              TEventDetails(),
               const SizedBox(height: 16.0),
 
               // Event Description
@@ -72,7 +74,7 @@ class EventDetailsScreen extends StatelessWidget {
               ),
 
               // Additional Event Information
-              const TAdditionalInformationWidget(),
+               TAdditionalInformationWidget(),
             ],
           ),
         ),
@@ -82,8 +84,7 @@ class EventDetailsScreen extends StatelessWidget {
   }
 
   Widget buildDescription() {
-    const description =
-        'Event Description goes here. You can provide a detailed description of the event to the users. This can include the purpose of the event, the agenda, and other important details. Make sure to keep it concise and informative. You can also include links to external resources if needed. Enjoy the event event event. Event Description goes here. You can provide a detailed description of the event to the users. This can include the purpose of the event, the agenda, and other important details. Make sure to keep it concise and informative. You can also include links to external resources if needed. Enjoy the event event event!';
+     var description = eventController.selectedDescription.value; 
 
     return Obx(
       () => Column(
