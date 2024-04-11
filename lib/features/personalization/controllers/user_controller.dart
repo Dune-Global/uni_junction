@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:uni_junction/data/repositories/user/user_repository.dart';
@@ -6,9 +7,11 @@ import 'package:uni_junction/features/personalization/models/user_model.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
+
   final profileLodaing = false.obs;
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
+  
 
   @override
   void onInit() {
@@ -27,5 +30,9 @@ class UserController extends GetxController {
     } finally {
       profileLodaing.value = false;
     }
+  }
+
+  updateRecord(UserModel user) async {
+    await userRepository.updateUser(user);
   }
 }
