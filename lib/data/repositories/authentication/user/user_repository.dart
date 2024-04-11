@@ -33,20 +33,18 @@ class UserRepository extends GetxController {
   }
 
   //update user
-  Future<UserModel> getUserDetails(String email) async {
-    final snapshot =
-        await _db.collection("Users").where("email", isEqualTo: email).get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
-    return userData;
+  Future<void> updateUserRecord(UserModel user) async {
+  try {
+    return await _db.collection("Users").doc(user.id).update(user.toJson());
+  } on FirebaseException catch (e) {
+    throw TFirebaseException(e.code).message;
+  } on FormatException catch (_) {
+    throw const TFormatException();
+  } on PlatformException catch (e) {
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw "Something went wrong";
   }
-
-
- Future<List<UserModel>> allUser() async {
-    final snapshot =
-        await _db.collection("Users").get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
-    return userData;
-  }
-
+}
 
 }

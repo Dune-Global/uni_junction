@@ -95,5 +95,6 @@ class TTexts {
   static const String eventImage = "Event Image";
   static const String eventUrl = "Event URL";
 
-  
+  // -- Event Save
+  static const String eventSave = "Saved Events";
 }
