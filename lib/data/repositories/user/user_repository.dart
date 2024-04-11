@@ -51,4 +51,56 @@ class UserRepository extends GetxController {
       throw "Something went wrong";
     }
   }
+
+  // push events to users likedEvents array
+  Future<void> pushLikedEvents(String eventId) async {
+    try {
+      final user = await fetchUserDetails();
+      return await _db.collection("Users").doc(user.id).update({
+        'likedEvents': FieldValue.arrayUnion([eventId])
+      });
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
+  }
+
+  // remove events from users likedEvents array
+  Future<void> removeLikedEvents(String eventId) async {
+    try {
+      final user = await fetchUserDetails();
+      return await _db.collection("Users").doc(user.id).update({
+        'likedEvents': FieldValue.arrayRemove([eventId])
+      });
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
+  }
+
+  // check if user has liked the event
+  Future<bool> hasLikedEvent(String eventId) async {
+    try {
+      final user = await fetchUserDetails();
+      return user.likedEvents.contains(eventId);
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
+  }
 }

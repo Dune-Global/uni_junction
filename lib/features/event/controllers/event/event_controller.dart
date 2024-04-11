@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_junction/common/widgets/loaders/snackbar_popup.dart';
 import 'package:uni_junction/data/repositories/event/event_repository.dart';
+import 'package:uni_junction/data/repositories/user/user_repository.dart';
 import 'package:uni_junction/features/event/models/event/event_model.dart';
 import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/navigation_menu.dart';
@@ -41,6 +42,7 @@ class EventController extends GetxController {
   final headCount = TextEditingController();
 
   // Seletcted Event details
+  final selectedEventId = ''.obs;
   final selectedTitle = ''.obs;
   final selectedDescription = ''.obs;
   final selectedStartDate = ''.obs;
@@ -57,11 +59,23 @@ class EventController extends GetxController {
   final selectedIsPrivate = false.obs;
   final selectedIsTicketed = false.obs;
 
-
   GlobalKey<FormState> eventFormKey = GlobalKey<FormState>();
 
-  void toggleHeart() {
+  @override
+  void onInit() {
+    super.onInit();
+    hasLikedEvent(selectedEventId.value).then((value) {
+      isHeart.value = value;
+    });
+  }
+
+  void toggleHeart(String eventId) {
     isHeart.value = !isHeart.value;
+    if (isHeart.value) {
+      pushLikedEvents(eventId);
+    } else {
+      removeLikedEvents(eventId);
+    }
   }
 
   Future<void> selectDate(BuildContext context) async {
@@ -171,5 +185,33 @@ class EventController extends GetxController {
       TLoaders.errorSnackBar("Error", e.toString());
       TFullScreenLoader.stopLoading();
     }
+  }
+
+  // create the likedEvents function
+  Future<void> pushLikedEvents(String eventId) async {
+    try {
+      final userRepository = Get.put(UserRepository());
+      userRepository.pushLikedEvents(eventId);
+      TLoaders.successSnackBar("Success", "Event added to liked events");
+    } catch (e) {
+      TLoaders.errorSnackBar("Error", e.toString());
+    }
+  }
+
+  // remove the likedEvents function
+  Future<void> removeLikedEvents(String eventId) async {
+    try {
+      final userRepository = Get.put(UserRepository());
+      userRepository.removeLikedEvents(eventId);
+      TLoaders.successSnackBar("Success", "Event removed from liked events");
+    } catch (e) {
+      TLoaders.errorSnackBar("Error", e.toString());
+    }
+  }
+
+  // return true or false is user has liked the event
+  Future<bool> hasLikedEvent(String eventId) async {
+    final userRepository = Get.put(UserRepository());
+    return userRepository.hasLikedEvent(eventId);
   }
 }

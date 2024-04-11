@@ -54,6 +54,7 @@ class TCategoryEvents extends StatelessWidget {
                   imageUrl:
                       event.imageUrl.isEmpty ? defaultImageUrl : event.imageUrl,
                   onTap: () => {
+                      eventController.selectedEventId.value = event.id,
                       eventController.selectedTitle.value = event.title,
                       eventController.selectedDescription.value = event.description,
                       eventController.selectedStartDate.value = event.startDate.toString(),
