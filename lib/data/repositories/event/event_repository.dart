@@ -123,4 +123,32 @@ class EventRepository extends GetxController {
       throw e.toString();
     }
   }
+
+  // Get all events that has one or more attendees on the attendees array and order it by the highest number of count on array
+  Future<List<EventModel>> getEventsByAttendees() async {
+    try {
+      final querySnapshot = await _db
+          .collection("Events")
+          .where("attendees", isGreaterThan: [])
+          .orderBy("attendees", descending: true)
+          .get();
+      final docs = querySnapshot.docs;
+
+      final List<EventModel> events = [];
+
+      for (var doc in docs) {
+        events.add(EventModel.fromSnapshot(doc));
+      }
+      return events;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      print(e.toString());
+      throw e.toString();
+    }
+  }
 }
