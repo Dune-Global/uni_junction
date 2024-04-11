@@ -39,6 +39,7 @@ class EventController extends GetxController {
   final eventCategoryList = eventCategoryLists.obs;
 
   final userLikedEvents = <EventModel>[].obs;
+  final popularEvents = <EventModel>[].obs;
 
   // Variables
   final startDate = TextEditingController();
@@ -66,6 +67,7 @@ class EventController extends GetxController {
   final selectedOrgName = ''.obs;
   final selectedTicketPrice = ''.obs;
   final selectedHeadCount = ''.obs;
+  final selectedImageUrl = ''.obs;
   final selectedIsOnline = false.obs;
   final selectedIsOrg = false.obs;
   final selectedIsPrivate = false.obs;
@@ -76,7 +78,7 @@ class EventController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
+    getPopularEvents();
     hasLikedEvent(selectedEventId.value).then((value) {
       isHeart.value = value;
     });
@@ -315,6 +317,23 @@ class EventController extends GetxController {
       final String eventImageUrl =
           await storageReference.getDownloadURL(); // what is this? This is
       imageUrl.value = eventImageUrl;
+    }
+  }
+
+  Future<void> getPopularEvents() async {
+    try {
+      final eventRepository = Get.put(EventRepository());
+      final events = await eventRepository.getEventsByAttendees();
+      popularEvents.assignAll(events);
+      print("Popular events");
+      print(popularEvents.length);
+
+      // Convert each event to JSON and print it
+      for (var event in events) {
+        print(jsonEncode(event.toJson()));
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }
