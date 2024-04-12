@@ -21,7 +21,7 @@ class SavedScreen extends StatelessWidget {
           await eventController.fetchUserLikedEvents();
           await Future.delayed(const Duration(seconds: 1));
         },
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             children: [
               TPrimaryHeaderContainer(

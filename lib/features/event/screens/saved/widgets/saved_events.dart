@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_junction/features/event/controllers/event/category_controller.dart';
 import 'package:uni_junction/features/event/controllers/event/event_controller.dart';
 import 'package:uni_junction/features/event/screens/event_details/event_details.dart';
 import 'package:uni_junction/features/event/screens/home/widgets/this_month_event_cards.dart';
-import 'package:uni_junction/test/test_page.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:intl/intl.dart';
 
@@ -25,7 +23,7 @@ class TSavedEvents extends StatelessWidget {
         return controller.userLikedEvents.isEmpty
             ? Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 220.0,
                     horizontal: 50.0,
                   ),
@@ -36,7 +34,7 @@ class TSavedEvents extends StatelessWidget {
                         width: 190,
                         height: 190,
                       ),
-                      Text(
+                      const Text(
                           style: TextStyle(fontSize: 17),
                           textAlign: TextAlign.center,
                           "Sorry, there are no saved events"),
