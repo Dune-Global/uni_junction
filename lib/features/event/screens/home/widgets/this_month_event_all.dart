@@ -16,7 +16,7 @@ class TThisMonthEventCards extends StatelessWidget {
       children: [
         EventThisMonth(
           date: "12",
-          month: "Jan",
+          month: "Apr",
           eventName: "Google I/O 24",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/645/411",
@@ -27,7 +27,7 @@ class TThisMonthEventCards extends StatelessWidget {
         ),
         EventThisMonth(
           date: "03",
-          month: "Dec",
+          month: "Apr",
           eventName: "Linux User Group",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/115/411",
@@ -50,7 +50,7 @@ class TThisMonthEventCards extends StatelessWidget {
         ),
         EventThisMonth(
           date: "22",
-          month: "Jul",
+          month: "Apr",
           eventName: "Arduino Day 2024",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/225/411",
@@ -60,7 +60,7 @@ class TThisMonthEventCards extends StatelessWidget {
         ),
         EventThisMonth(
           date: "24",
-          month: "Jul",
+          month: "Apr",
           eventName: "GDG Devfest 2024",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/224/411",
@@ -70,7 +70,7 @@ class TThisMonthEventCards extends StatelessWidget {
         ),
         EventThisMonth(
           date: "09",
-          month: "Aug",
+          month: "Apr",
           eventName: "KCD Sri Lanka 2024",
           location: "Colombo, Sri Lanka",
           imageUrl: "https://unsplash.it/687/411",
