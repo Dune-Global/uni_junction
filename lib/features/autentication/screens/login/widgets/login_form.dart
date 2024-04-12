@@ -5,7 +5,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:uni_junction/features/autentication/controllers/login/login_controller.dart';
 import 'package:uni_junction/features/autentication/screens/password_configuration/forget_password.dart';
 import 'package:uni_junction/features/autentication/screens/register/register.dart';
-import 'package:uni_junction/navigation_menu.dart';
 import 'package:uni_junction/utils/constants/colors.dart';
 import 'package:uni_junction/utils/constants/sizes.dart';
 import 'package:uni_junction/utils/constants/text_strings.dart';
