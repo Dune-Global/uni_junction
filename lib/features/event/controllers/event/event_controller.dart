@@ -8,7 +8,6 @@ import 'package:uni_junction/common/widgets/loaders/snackbar_popup.dart';
 import 'package:uni_junction/data/repositories/event/event_repository.dart';
 import 'package:uni_junction/data/repositories/user/user_repository.dart';
 import 'package:uni_junction/features/event/models/event/event_model.dart';
-import 'package:uni_junction/features/event/screens/explore/category/category.dart';
 import 'package:uni_junction/features/personalization/controllers/user_controller.dart';
 import 'package:uni_junction/navigation_menu.dart';
 import 'package:uni_junction/utils/constants/image_strings.dart';
