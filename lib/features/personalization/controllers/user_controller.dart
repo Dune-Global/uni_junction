@@ -1,6 +1,4 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uni_junction/data/repositories/user/user_repository.dart';
 import 'package:uni_junction/features/personalization/models/user_model.dart';
